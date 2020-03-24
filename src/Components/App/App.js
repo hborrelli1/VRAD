@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./App.css";
+import "./App.scss";
 import Login from "../Login/Login.js";
 
 class App extends Component {
@@ -8,7 +8,7 @@ class App extends Component {
     this.state = {
       isLoggedIn: false,
       userInfo: {
-        name: "",
+        userName: "",
         email: "",
         purpose: ""
       }
