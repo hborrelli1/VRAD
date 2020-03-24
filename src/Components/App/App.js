@@ -3,19 +3,33 @@ import UserProfile from '../UserProfile/UserProfile';
 
 import './App.css';
 
-function App() {
-  let userInfo = {
-    name: 'Ham Leadbeater',
-    email: 'ham@gmail.com',
-    purpose: 'business',
-    favoriteLocations: [32, 45]
+class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      userInfo: {
+        name: 'Ham Leadbeater',
+        email: 'ham@gmail.com',
+        purpose: 'business',
+        favoriteLocations: [32, 45]
+      }
+    }
   }
 
-  return (
-    <div className="App">
-      <UserProfile userInfo={userInfo}/>
-    </div>
-  );
+  goToFavRentals = () => {
+    console.log('clicked');
+  }
+
+  render() {
+    return (
+      <div className="App">
+      <UserProfile
+      userInfo={this.state.userInfo}
+      goToFavRentals={this.goToFavRentals}
+      />
+      </div>
+    );
+  }
 }
 
 export default App;
