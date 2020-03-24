@@ -1,26 +1,52 @@
 import React, { Component } from "react";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 // import "./Login.scss"
+
+const validEmailRegex = RegExp(
+  /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
+);
 
 class Login extends Component {
   constructor() {
     super();
-    this.state = this.defaultState;
+    this.state = {
+      userName: "",
+      email: "",
+      purpose: "",
+      errors: {
+        userName: "",
+        email: "",
+        purpose: ""
+      }
+    };
   }
-  defaultState = {
-    userName: "",
-    email: "",
-    purpose: ""
-  };
 
   handleChange = event => {
-    this.setState({
-      [event.target.name]: event.target.value
+    event.preventDefault();
+    const { name, value } = event.target;
+    let errors = this.state.errors;
+
+    switch (name) {
+      case "userName":
+        errors.fullName =
+          value.length < 5 ? "Full Name must be 5 characters long!" : "";
+        break;
+      case "email":
+        errors.email = validEmailRegex.test(value) ? "" : "Email is not valid!";
+        break;
+      default:
+        break;
+    }
+
+    this.setState({ errors, [name]: value }, () => {
+      console.log(errors);
     });
   };
 
-  loginAttempt = event => {
+  handleSubmit = event => {
     event.preventDefault();
+    if(validateFor)
+
     const { login } = this.props;
     login(this.state);
   };
@@ -38,13 +64,13 @@ class Login extends Component {
 
         <input
           type="text"
-          placeholder="Email"
+          placeholder="Email@provider.com"
           name="email"
           value={this.state.email}
           onChange={event => this.handleChange(event)}
         />
 
-        <button onClick={this.loginAttempt}>Login</button>
+        <button onClick={this.handleSubmit}>Login</button>
       </form>
     );
   }
@@ -52,6 +78,6 @@ class Login extends Component {
 
 Login.propTypes = {
   Login: PropTypes.func
-}
+};
 
 export default Login;
