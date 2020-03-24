@@ -16,7 +16,6 @@ class App extends Component {
   }
 
   login = (userInfo) => {
-    console.log(userInfo);
     this.setState({userInfo:userInfo,isLoggedIn:true})
   };
   render() {
