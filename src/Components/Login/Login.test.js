@@ -1,6 +1,7 @@
 import React from "react";
 import Login from "./Login";
 import { render, fireEvent } from "@testing-library/react";
+import "@testing-library/jest-dom";
 
 describe("Login", () => {
   it("sends the correct data up to app via Login", () => {
@@ -12,7 +13,7 @@ describe("Login", () => {
     fireEvent.change(getByPlaceholderText("User Name"), {
       target: { value: "fakeUser" }
     });
-    fireEvent.change(getByPlaceholderText("Email"), {
+    fireEvent.change(getByPlaceholderText("Email@provider.com"), {
       target: { value: "fakeUser@gmail.com" }
     });
     fireEvent.click(getByText("Login"));
@@ -22,7 +23,8 @@ describe("Login", () => {
       purpose: ""
     });
   });
-  it("Should check if the username length is longer than 5 char", () => {
+  it("Should not send anything if data is wrong", () => {
+    const mockLogin = jest.fn();
     const { debug, getByPlaceholderText, getByText } = render(
       <Login login={mockLogin} />
     );
@@ -30,18 +32,29 @@ describe("Login", () => {
     fireEvent.change(getByPlaceholderText("User Name"), {
       target: { value: "fake" }
     });
+    fireEvent.change(getByPlaceholderText("Email@provider.com"), {
+      target: { value: "fakeUser@gmailcom" }
+    });
+    fireEvent.click(getByText("Login"));
+    expect(mockLogin).toHaveBeenCalledTimes(0);
+  });
+  it("Should check if the username length is longer than 5 char", () => {
+    const { debug, getByPlaceholderText, getByText } = render(<Login />);
 
-
+    fireEvent.change(getByPlaceholderText("User Name"), {
+      target: { value: "fake" }
+    });
+    expect(
+      getByText("User Name must be 5 characters long!")
+    ).toBeInTheDocument();
   });
 
   it("Should check if the email is not valid", () => {
-    const { debug, getByPlaceholderText, getByText } = render(
-      <Login login={mockLogin} />
-    );
+    const { debug, getByPlaceholderText, getByText } = render(<Login />);
 
-    fireEvent.change(getByPlaceholderText("Email"), {
+    fireEvent.change(getByPlaceholderText("Email@provider.com"), {
       target: { value: "fakeUser" }
     });
-
+    expect(getByText("Email is not valid!")).toBeInTheDocument();
   });
 });
