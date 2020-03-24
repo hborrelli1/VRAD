@@ -1,11 +1,30 @@
-import React from 'react';
-import './App.css';
+import React, { Component } from "react";
+import "./App.css";
+import Login from "../Login/Login.js";
 
-function App() {
-  return (
-    <div className="App">
-    </div>
-  );
+class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      isLoggedIn: false,
+      userInfo: {
+        name: "",
+        email: "",
+        purpose: ""
+      }
+    };
+  }
+
+  login = () => {
+    console.log('login');
+  };
+  render() {
+    return (
+      <div className="App">
+        <Login login={this.login} />
+      </div>
+    );
+  }
 }
 
 export default App;
