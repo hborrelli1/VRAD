@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./App.scss";
 import Login from "../Login/Login.js";
+import UserProfile from '../UserProfile/UserProfile';
 
 class App extends Component {
   constructor() {
@@ -11,7 +12,7 @@ class App extends Component {
         name: "",
         email: "",
         purpose: "",
-        favoriteLocations: []
+        favoriteLocations: [32,2]
       }
     };
   }
@@ -22,10 +23,20 @@ class App extends Component {
       userInfo: { ...userState, ...userData}
     });
   };
+
+  goToFavRentals = () => {
+    console.log('clicked');
+  }
+
   render() {
     return (
       <div className="App">
         <Login login={this.login} />
+          <UserProfile
+          userInfo={this.state.userInfo}
+          goToFavRentals={this.goToFavRentals}
+          />
+
       </div>
     );
   }
