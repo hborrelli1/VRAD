@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from 'prop-types';
 // import "./Login.scss"
 
 class Login extends Component {
@@ -12,7 +13,17 @@ class Login extends Component {
     purpose: ""
   };
 
-  updateState = event => {};
+  handleChange = event => {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  };
+
+  loginAttempt = event => {
+    event.preventDefault();
+    const { login } = this.props;
+    login(this.state);
+  };
 
   render() {
     return (
@@ -22,7 +33,7 @@ class Login extends Component {
           placeholder="User Name"
           name="userName"
           value={this.state.userName}
-          onChange={event => this.updateState(event)}
+          onChange={event => this.handleChange(event)}
         />
 
         <input
@@ -30,13 +41,17 @@ class Login extends Component {
           placeholder="Email"
           name="email"
           value={this.state.email}
-          onChange={event => this.updateState(event)}
+          onChange={event => this.handleChange(event)}
         />
 
-        <button onClick={this.login}>Login</button>
+        <button onClick={this.loginAttempt}>Login</button>
       </form>
     );
   }
+}
+
+Login.propTypes = {
+  Login: PropTypes.func
 }
 
 export default Login;
