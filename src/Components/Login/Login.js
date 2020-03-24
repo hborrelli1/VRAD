@@ -104,6 +104,7 @@ class Login extends Component {
         <div className="input-wrapper">
           <select
             name="purpose"
+            aria-label = "purpose of travel"
             value={purpose}
             onChange={event => this.handleChange(event)}
           >

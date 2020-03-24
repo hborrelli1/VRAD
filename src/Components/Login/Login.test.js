@@ -6,7 +6,7 @@ import "@testing-library/jest-dom";
 describe("Login", () => {
   it("sends the correct data up to app via Login", () => {
     const mockLogin = jest.fn();
-    const { debug, getByPlaceholderText, getByText } = render(
+    const { debug, getByPlaceholderText, getByText,getByLabelText } = render(
       <Login login={mockLogin} />
     );
 
@@ -16,11 +16,14 @@ describe("Login", () => {
     fireEvent.change(getByPlaceholderText("Email@provider.com"), {
       target: { value: "fakeUser@gmail.com" }
     });
+    fireEvent.change(getByLabelText("purpose of travel"), {
+      target: { value: "buisness" }
+    });
     fireEvent.click(getByText("Login"));
     expect(mockLogin).toHaveBeenCalledWith({
       name: "fakeUser",
       email: "fakeUser@gmail.com",
-      purpose: ""
+      purpose: "buisness"
     });
   });
 
