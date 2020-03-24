@@ -1,0 +1,48 @@
+//Mixins
+@mixin button() {
+  font-family: $font;
+  text-transform: uppercase;
+  outline: 0;
+  background: $button-background;
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  color: #FFFFFF;
+  font-size: $font-size-medium;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+
+  &:hover,
+  :active,
+  :focus {
+    background: $highlight;
+  }
+
+  &:disabled {
+    background: grey;
+    color:lightgrey;
+  }
+}
+@mixin form() {
+  margin: 4rem auto 100px;
+  padding: 45px;
+  text-align: center;
+  box-shadow: $box-shadow;
+  position: relative;
+  z-index: 1;
+  background: $primary-background;
+  font-size: $font-size-medium;
+}
+
+@mixin input() {
+  font-family: $font;
+  outline: 0;
+  background: $input-background;
+  width: 100%;
+  border: 0;
+  margin: 5px 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: $font-size-medium;
+}

@@ -1,0 +1,32 @@
+input {
+  @include input();
+}
+
+button {
+  @include button();
+}
+
+form {
+  @include form();
+  background-color: $component-background;
+  width: 360px;
+}
+
+.input-wrapper {
+  display:flex;
+  flex-direction: column;
+  height: 6rem;
+}
+
+.error {
+  color:orange;
+  font-weight: bold;
+  font-size: 1rem;
+  display: inline-block;
+  height:1rem;
+  align-self: baseline;
+}
+
+select {
+  @include input();
+}

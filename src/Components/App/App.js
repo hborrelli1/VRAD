@@ -1,20 +1,28 @@
-import React from 'react';
+import React, { Component } from "react";
+import "./App.scss";
+import Login from "../Login/Login.js";
 import UserProfile from '../UserProfile/UserProfile';
 
-import './App.css';
-
-class App extends React.Component {
+class App extends Component {
   constructor() {
     super();
     this.state = {
+      isLoggedIn: false,
       userInfo: {
-        name: 'Ham Leadbeater',
-        email: 'ham@gmail.com',
-        purpose: 'business',
-        favoriteLocations: [32, 45]
+        name: "",
+        email: "",
+        purpose: "",
+        favoriteLocations: [32,2]
       }
-    }
+    };
   }
+
+  login = userData => {
+    const userState = this.state.userInfo;
+    const updatedState = this.setState({
+      userInfo: { ...userState, ...userData}
+    });
+  };
 
   goToFavRentals = () => {
     console.log('clicked');
@@ -23,10 +31,12 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-      <UserProfile
-      userInfo={this.state.userInfo}
-      goToFavRentals={this.goToFavRentals}
-      />
+        <Login login={this.login} />
+          <UserProfile
+          userInfo={this.state.userInfo}
+          goToFavRentals={this.goToFavRentals}
+          />
+
       </div>
     );
   }
