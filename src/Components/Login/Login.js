@@ -10,13 +10,13 @@ class Login extends Component {
   constructor() {
     super();
     this.state = {
-      userName: "",
+      name: "",
       email: "",
       purpose: "",
       errors: {
-        userName: "",
+        name: "",
         email: "",
-        purpose: ""
+        purpose: "default"
       }
     };
   }
@@ -27,8 +27,8 @@ class Login extends Component {
     let errors = this.state.errors;
 
     switch (name) {
-      case "userName":
-        errors.userName =
+      case "name":
+        errors.name =
           value.length < 5 ? "User Name must be 5 characters long!" : "";
         break;
       case "email":
@@ -43,7 +43,7 @@ class Login extends Component {
     }
 
     this.setState({ errors, [name]: value }, () => {
-      console.log(errors);
+      // console.log(errors);
     });
   };
 
@@ -51,9 +51,9 @@ class Login extends Component {
     event.preventDefault();
     if (this.validateForm(this.state.errors)) {
       const { login } = this.props;
-      const { userName, email, purpose } = this.state;
+      const { name, email, purpose } = this.state;
       login({
-        userName: userName,
+        name: name,
         email: email,
         purpose: purpose
       });
@@ -63,30 +63,30 @@ class Login extends Component {
     }
   };
 
-  validateForm = errors => {
+  validateForm = () => {
     let valid = true;
-    Object.values(errors).forEach(val => val.length > 0 && (valid = false));
+    const { errors, name, email, purpose } = this.state;
+    valid =
+      errors.email.length === 0 &&
+      errors.name.length === 0 &&
+      name !== "" &&
+      email !== "" &&
+      errors.purpose.length === 0;
     return valid;
   };
 
   render() {
-    const { errors, userName, email, purpose } = this.state;
-    const isEnabled =
-      errors.email.length === 0 &&
-      errors.userName.length === 0 &&
-      userName !== "" &&
-      email !== "" &&
-      errors.purpose === 0;
-
+    const { errors, name, email, purpose } = this.state;
+    const isEnabled = this.validateForm();
     return (
       <form>
         <div className="input-wrapper">
-          <span className="error">{errors.userName}</span>
+          <span className="error">{errors.name}</span>
           <input
             type="text"
             placeholder="User Name"
-            name="userName"
-            value={userName}
+            name="name"
+            value={name}
             onChange={event => this.handleChange(event)}
           />
         </div>

@@ -8,15 +8,19 @@ class App extends Component {
     this.state = {
       isLoggedIn: false,
       userInfo: {
-        userName: "",
+        name: "",
         email: "",
-        purpose: ""
+        purpose: "",
+        favoriteLocations: []
       }
     };
   }
 
-  login = (userInfo) => {
-    this.setState({userInfo:userInfo,isLoggedIn:true})
+  login = userData => {
+    const userState = this.state.userInfo;
+    const updatedState = this.setState({
+      userInfo: { ...userState, ...userData}
+    });
   };
   render() {
     return (

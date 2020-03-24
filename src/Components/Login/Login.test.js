@@ -18,11 +18,12 @@ describe("Login", () => {
     });
     fireEvent.click(getByText("Login"));
     expect(mockLogin).toHaveBeenCalledWith({
-      userName: "fakeUser",
+      name: "fakeUser",
       email: "fakeUser@gmail.com",
       purpose: ""
     });
   });
+
   it("Should not send anything if data is wrong", () => {
     const mockLogin = jest.fn();
     const { debug, getByPlaceholderText, getByText } = render(
@@ -38,7 +39,8 @@ describe("Login", () => {
     fireEvent.click(getByText("Login"));
     expect(mockLogin).toHaveBeenCalledTimes(0);
   });
-  it("Should check if the username length is longer than 5 char", () => {
+
+  it("Should check if the name length is longer than 5 char", () => {
     const { debug, getByPlaceholderText, getByText } = render(<Login />);
 
     fireEvent.change(getByPlaceholderText("User Name"), {
