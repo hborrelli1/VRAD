@@ -26,3 +26,7 @@ form {
   height:1rem;
   align-self: baseline;
 }
+
+select {
+  @include input();
+}

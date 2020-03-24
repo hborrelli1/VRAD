@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-// import './Login.scss'
 
 const validEmailRegex = RegExp(
   // eslint-disable-next-line
@@ -35,6 +34,10 @@ class Login extends Component {
       case "email":
         errors.email = validEmailRegex.test(value) ? "" : "Email is not valid!";
         break;
+      case "purpose":
+        errors.purpose =
+          value === "default" ? "Choose Reason for Traveling." : "";
+        break;
       default:
         break;
     }
@@ -67,12 +70,13 @@ class Login extends Component {
   };
 
   render() {
-    const { errors, userName, email } = this.state;
+    const { errors, userName, email, purpose } = this.state;
     const isEnabled =
       errors.email.length === 0 &&
       errors.userName.length === 0 &&
       userName !== "" &&
-      email !== "";
+      email !== "" &&
+      errors.purpose === 0;
 
     return (
       <form>
@@ -82,20 +86,32 @@ class Login extends Component {
             type="text"
             placeholder="User Name"
             name="userName"
-            value={this.state.userName}
+            value={userName}
             onChange={event => this.handleChange(event)}
           />
         </div>
-        
+
         <div className="input-wrapper">
           <span className="error">{errors.email}</span>
           <input
             type="text"
             placeholder="Email@provider.com"
             name="email"
-            value={this.state.email}
+            value={email}
             onChange={event => this.handleChange(event)}
           />
+        </div>
+        <div className="input-wrapper">
+          <select
+            name="purpose"
+            value={purpose}
+            onChange={event => this.handleChange(event)}
+          >
+            <option value="default">Select a Purpose</option>
+            <option value="buisness">Buisness</option>
+            <option value="vacation">Vaction</option>
+            <option value="other"> Other</option>
+          </select>
         </div>
 
         <button disabled={!isEnabled} onClick={this.handleSubmit}>
