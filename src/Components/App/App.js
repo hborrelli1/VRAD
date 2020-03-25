@@ -15,8 +15,35 @@ class App extends Component {
         purpose: "",
         favoriteLocations: [32, 2]
       },
-      currentView:""
+      areas: [],
+      currentView: ""
     };
+  }
+
+  componentDidMount = () => {
+    fetch('http://localhost:3001/api/v1/areas')
+      .then(res => res.json())
+      .then(areaData => this.getAreaDetails(areaData))
+      .then(areasList => this.setState({ areas: areasList }))
+      .catch(err => console.log(err.message));
+  }
+
+  getAreaDetails = (areaData) => {
+    const BASE_URL = 'http://localhost:3001';
+    const promises = areaData.areas.map(area => {
+      const AREA_ENDPOINT = area.details;
+      return fetch(BASE_URL + AREA_ENDPOINT)
+        .then(response => response.json())
+        .then(areaInfo => {
+          console.log(areaInfo);
+          return {
+            nickName: area.area,
+            details:area.details,
+            ...areaInfo
+          }
+        })
+    })
+    return Promise.all(promises);
   }
 
   login = userData => {
@@ -27,6 +54,10 @@ class App extends Component {
       currentView:'AreaContainer'
     });
   };
+
+  changeView = (view, destinationURL) => {
+    this.setState({ currentView: view });
+  }
 
   goToFavRentals = () => {
     console.log("clicked");
@@ -43,7 +74,10 @@ class App extends Component {
           />
         )}
         {this.state.isLoggedIn && this.state.currentView ==="AreaContainer" && (
-          <AreaContainer/>
+          <AreaContainer
+            areas={this.state.areas}
+            changeView={this.changeView}
+          />
         )}
       </main>
     );
