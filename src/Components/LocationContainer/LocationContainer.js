@@ -7,11 +7,11 @@ class LocationContainer extends React.Component {
   constructor() {
     super();
     this.state = {
-      data:[]
+      data: []
     };
   }
 
-  locationContainerHelper = (listings) => {
+  locationContainerHelper = listings => {
     const promises = listings.map(listing => {
       return fetch(BASE_URL + listing)
         .then(res => res.json())
@@ -21,28 +21,31 @@ class LocationContainer extends React.Component {
           };
         });
     });
-    Promise.all(promises)
-    .then(data => {
-      this.setState({data:data})
-    })
-
+    Promise.all(promises).then(data => {
+      this.setState({ data: data });
+    });
   };
 
   componentDidMount() {
-    this.locationContainerHelper(this.props.listings)
+    this.locationContainerHelper(this.props.listings);
   }
 
-  render (){
+  render() {
     return (
       <div>
-      {
-        this.state.data.map(listing => {
-          return <LocationCard  key= {listing.listing_id} data = {listing} listSubmit = {this.props.listSubmit}/>
-        })
-      }
+        {this.state.data.map(listing => {
+          return (
+            <LocationCard
+              favorite={this.props.favorite}
+              key={listing.listing_id}
+              data={listing}
+              listSubmit={this.props.listSubmit}
+            />
+          );
+        })}
       </div>
-    )
+    );
   }
-};
+}
 
 export default LocationContainer;

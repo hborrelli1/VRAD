@@ -43,6 +43,16 @@ class App extends Component {
       .then(res => res.json())
   };
 
+  favorite = (id) => {
+    const {favoriteLocations} = this.state.userInfo;
+    // add in sad path for favoriting
+    let updatedState = {
+      ...this.state.userInfo,
+      favoriteLocations:[...favoriteLocations,id]
+    }
+    this.setState({userInfo: updatedState })
+  }
+
   render() {
     return (
       <main className="App">
@@ -57,6 +67,7 @@ class App extends Component {
           this.state.currentView === "AreaContainer" && <AreaContainer />}
         <LocationContainer
           listSubmit = {this.listSubmit}
+          favorite = {this.favorite}
           listings={[
             "/api/v1/listings/3",
             "/api/v1/listings/44",
