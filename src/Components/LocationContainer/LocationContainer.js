@@ -39,7 +39,7 @@ class LocationContainer extends React.Component {
               favorite={this.props.favorite}
               key={listing.listing_id}
               data={listing}
-              listSubmit={this.props.listSubmit}
+              goToListing={this.props.goToListing}
             />
           );
         })}

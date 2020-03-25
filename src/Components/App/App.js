@@ -16,7 +16,7 @@ class App extends Component {
         purpose: "",
         favoriteLocations: [32, 2]
       },
-      currentView: ""
+      currentView: "LocationContainer"
     };
   }
 
@@ -33,27 +33,41 @@ class App extends Component {
     console.log("clicked");
   };
 
-  listSubmit = (listing_id,view) => {
-    console.log('listSubmit',listing_id)
-    this.setState({currentView:view})
-  }
-
-  componentDidMount = () => {
-    fetch("http://localhost:3001/api/v1/areas")
-      .then(res => res.json())
+  goToListing = (listing_id, view) => {
+    this.setState({ currentView: view });
   };
 
-  favorite = (id) => {
-    const {favoriteLocations} = this.state.userInfo;
-    // add in sad path for favoriting
-    let updatedState = {
-      ...this.state.userInfo,
-      favoriteLocations:[...favoriteLocations,id]
+  componentDidMount = () => {
+    fetch("http://localhost:3001/api/v1/areas").then(res => res.json());
+  };
+
+  favorite = id => {
+    const { favoriteLocations } = this.state.userInfo;
+    let updatedState;
+    if (favoriteLocations.includes(id)) {
+      let filteredArray = favoriteLocations.filter(location => location !== id);
+      updatedState = {
+        ...this.state.userInfo,
+        favoriteLocations: filteredArray
+      };
+    } else {
+      updatedState = {
+        ...this.state.userInfo,
+        favoriteLocations: [...favoriteLocations, id]
+      };
     }
-    this.setState({userInfo: updatedState })
-  }
+    this.setState({ userInfo: updatedState });
+  };
 
   render() {
+    const listingTempData = [
+      "/api/v1/listings/3",
+      "/api/v1/listings/44",
+      "/api/v1/listings/221",
+      "/api/v1/listings/744",
+      "/api/v1/listings/90",
+      "/api/v1/listings/310"
+    ];
     return (
       <main className="App">
         {!this.state.isLoggedIn && <Login login={this.login} />}
@@ -65,18 +79,15 @@ class App extends Component {
         )}
         {this.state.isLoggedIn &&
           this.state.currentView === "AreaContainer" && <AreaContainer />}
-        <LocationContainer
-          listSubmit = {this.listSubmit}
-          favorite = {this.favorite}
-          listings={[
-            "/api/v1/listings/3",
-            "/api/v1/listings/44",
-            "/api/v1/listings/221",
-            "/api/v1/listings/744",
-            "/api/v1/listings/90",
-            "/api/v1/listings/310"
-          ]}
-        />
+
+        {this.state.isLoggedIn &&
+          this.state.currentView === "LocationContainer" && (
+            <LocationContainer
+              goToListing={this.goToListing}
+              favorite={this.favorite}
+              listings={listingTempData}
+            />
+          )}
       </main>
     );
   }
