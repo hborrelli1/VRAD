@@ -33,10 +33,14 @@ class App extends Component {
     console.log("clicked");
   };
 
+  listSubmit = (listing_id,view) => {
+    console.log('listSubmit',listing_id)
+    this.setState({currentView:view})
+  }
+
   componentDidMount = () => {
     fetch("http://localhost:3001/api/v1/areas")
       .then(res => res.json())
-      .then(area => console.log(area));
   };
 
   render() {
@@ -52,6 +56,7 @@ class App extends Component {
         {this.state.isLoggedIn &&
           this.state.currentView === "AreaContainer" && <AreaContainer />}
         <LocationContainer
+          listSubmit = {this.listSubmit}
           listings={[
             "/api/v1/listings/3",
             "/api/v1/listings/44",

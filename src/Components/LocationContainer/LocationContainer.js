@@ -32,18 +32,12 @@ class LocationContainer extends React.Component {
     this.locationContainerHelper(this.props.listings)
   }
 
-
-  listSubmit = (listing_id) => {
-    console.log('listSubmit',listing_id)
-  }
-
-
   render (){
     return (
       <div>
       {
         this.state.data.map(listing => {
-          return <LocationCard  key= {listing.listing_id}data = {listing} listSubmit = {this.listSubmit}/>
+          return <LocationCard  key= {listing.listing_id} data = {listing} listSubmit = {this.props.listSubmit}/>
         })
       }
       </div>

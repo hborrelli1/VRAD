@@ -15,7 +15,7 @@ const LocationCard = props => {
     <div>
       <h2 aria-label = {name}>{name}</h2>
       <h2 aria-label = {address.street}>{address.street}</h2>
-      <button onClick={event => props.listSubmit(listing_id)}>
+      <button onClick={event => props.listSubmit(listing_id,'LocationListingCard')}>
         Go to Listing
       </button>
     </div>
