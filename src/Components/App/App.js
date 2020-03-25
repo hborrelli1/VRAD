@@ -86,6 +86,7 @@ class App extends Component {
               goToListing={this.goToListing}
               favorite={this.favorite}
               listings={listingTempData}
+              favoriteLocations = {this.state.userInfo.favoriteLocations}
             />
           )}
       </main>

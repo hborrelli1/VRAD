@@ -32,7 +32,7 @@ class LocationContainer extends React.Component {
 
   render() {
     return (
-      <div>
+      <section className = "location-conatiner">
         {this.state.data.map(listing => {
           return (
             <LocationCard
@@ -40,10 +40,11 @@ class LocationContainer extends React.Component {
               key={listing.listing_id}
               data={listing}
               goToListing={this.props.goToListing}
+              favoriteLocations = {this.props.favoriteLocations}
             />
           );
         })}
-      </div>
+      </section>
     );
   }
 }
