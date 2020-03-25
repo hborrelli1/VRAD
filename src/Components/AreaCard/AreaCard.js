@@ -1,5 +1,6 @@
-import React from 'react'
+import React from 'react';
 import PropTypes from 'prop-types';
+import './AreaCard.scss';
 
 const AreaCard = ({ areaInfo, changeView }) => {
   const areaTitle = areaInfo.name !== areaInfo.nickName
@@ -10,8 +11,10 @@ const AreaCard = ({ areaInfo, changeView }) => {
 
   return (
     <div className="area-card">
-      <h4>{areaTitle}</h4>
-      <p>{areaInfo.about}</p>
+      <div className="info">
+        <h4>{areaTitle}</h4>
+        <p>{areaInfo.about}</p>
+      </div>
       <button
         onClick={() => changeView('LocationContainer', areaInfo.details)}
       >

@@ -18,11 +18,11 @@ describe("AreaContainer", () => {
           "details": "/api/v1/areas/751",
           "listings": [1,2,4,8,8,1]
       }
-    ]
+    ];
 
     const { getByText } = render(
       <AreaContainer areas={areaData} />
-    )
+    );
 
     const areaEl1 = getByText('River North - (RiNo)');
     const areaEl2 = getByText('Park Hill');

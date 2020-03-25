@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import AreaCard from '../AreaCard/AreaCard';
+import './AreaContainer.scss';
 
 const AreaContainer = ({ areas, changeView }) => {
     const areaCards = areas.map(area => (
@@ -12,7 +13,7 @@ const AreaContainer = ({ areas, changeView }) => {
     ));
 
   return (
-    <div>
+    <div className="area-container">
       {areaCards}
     </div>
   )
