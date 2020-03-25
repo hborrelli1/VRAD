@@ -6,14 +6,16 @@ const AreaCard = ({ areaInfo, changeView }) => {
     ? `${areaInfo.name} - (${areaInfo.nickName})`
     : areaInfo.name;
 
+  const buttonText = `View ${areaInfo.listings.length} Listings in ${areaInfo.nickName}`;
+
   return (
     <div className="area-card">
       <h4>{areaTitle}</h4>
-      {areaInfo.details}
+      <p>{areaInfo.about}</p>
       <button
         onClick={() => changeView('LocationContainer', areaInfo.details)}
       >
-        {'View Listing in ' + areaInfo.area}
+        {buttonText}
       </button>
     </div>
   );

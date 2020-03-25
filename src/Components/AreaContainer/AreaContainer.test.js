@@ -7,12 +7,16 @@ describe("AreaContainer", () => {
   it("should display a list of areas", () => {
     const areaData = [
       {
-          "area": "RiNo",
-          "details": "/api/v1/areas/590"
+          "nickName": "RiNo",
+          "name": "River North",
+          "details": "/api/v1/areas/590",
+          "listings": [1,2,4]
       },
       {
-          "area": "Park Hill",
-          "details": "/api/v1/areas/751"
+          "nickName": "Park Hill",
+          "name": "Park Hill",
+          "details": "/api/v1/areas/751",
+          "listings": [1,2,4,8,8,1]
       }
     ]
 
@@ -20,7 +24,7 @@ describe("AreaContainer", () => {
       <AreaContainer areas={areaData} />
     )
 
-    const areaEl1 = getByText('RiNo');
+    const areaEl1 = getByText('River North - (RiNo)');
     const areaEl2 = getByText('Park Hill');
 
     expect(areaEl1).toBeInTheDocument();

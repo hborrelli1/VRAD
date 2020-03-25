@@ -21,30 +21,30 @@ class App extends Component {
   }
 
   componentDidMount = () => {
-    const BASE_URL = 'http://localhost:3001';
-
     fetch('http://localhost:3001/api/v1/areas')
       .then(res => res.json())
-      .then(areaData => {
-        const promises = areaData.areas.map(area => {
-          const AREA_ENDPOINT = area.details;
-          return fetch(BASE_URL + AREA_ENDPOINT)
-            .then(response => response.json())
-            .then(areaInfo => {
-              console.log(areaInfo);
-              return {
-                nickName: area.area,
-                ...areaInfo
-              }
-            })
+      .then(areaData => this.getAreaDetails(areaData))
+      .then(areasList => this.setState({ areas: areasList }))
+      .catch(err => console.log(err.message));
+  }
+
+  getAreaDetails = (areaData) => {
+    const BASE_URL = 'http://localhost:3001';
+    const promises = areaData.areas.map(area => {
+      const AREA_ENDPOINT = area.details;
+      return fetch(BASE_URL + AREA_ENDPOINT)
+        .then(response => response.json())
+        .then(areaInfo => {
+          console.log(areaInfo);
+          return {
+            nickName: area.area,
+            details:area.details,
+            ...areaInfo
+          }
         })
-        return Promise.all(promises);
-      })
-      .then(areasList =>
-        this.setState({ areas: areasList })
-      );
-}
-  // this.setState({ areas: [...areas.areas] })
+    })
+    return Promise.all(promises);
+  }
 
   login = userData => {
     const userState = this.state.userInfo;
@@ -56,11 +56,7 @@ class App extends Component {
   };
 
   changeView = (view, destinationURL) => {
-    // Change states view
     this.setState({ currentView: view });
-
-    // Fetch data to display locations by destinationURL
-
   }
 
   goToFavRentals = () => {
