@@ -4,13 +4,14 @@ import AreaCard from '../AreaCard/AreaCard';
 import './AreaContainer.scss';
 
 const AreaContainer = ({ areas, changeView }) => {
-    const areaCards = areas.map(area => (
-      <AreaCard
-        key={area.id}
-        areaInfo={area}
-        changeView={changeView}
-      />
-    ));
+
+  const areaCards = areas.map(area => (
+    <AreaCard
+      key={area.name}
+      areaInfo={area}
+      changeView={changeView}
+    />
+  ));
 
   return (
     <div className="area-container">
@@ -18,7 +19,5 @@ const AreaContainer = ({ areas, changeView }) => {
     </div>
   )
 }
-
-
 
 export default AreaContainer;

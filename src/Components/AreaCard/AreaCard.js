@@ -13,6 +13,7 @@ const AreaCard = ({ areaInfo, changeView }) => {
     <div className="area-card">
       <div className="info">
         <h4>{areaTitle}</h4>
+        <p className="location">{areaInfo.location}</p>
         <p>{areaInfo.about}</p>
       </div>
       <button

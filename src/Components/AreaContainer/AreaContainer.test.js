@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import AreaContainer from './AreaContainer';
 import '@testing-library/jest-dom';
 
@@ -25,6 +25,7 @@ describe("AreaContainer", () => {
     );
 
     const areaEl1 = getByText('River North - (RiNo)');
+    const areaEl1Button = getByText('View 3 Listings in RiNo')
     const areaEl2 = getByText('Park Hill');
 
     expect(areaEl1).toBeInTheDocument();
