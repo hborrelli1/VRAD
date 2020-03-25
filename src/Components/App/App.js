@@ -14,11 +14,11 @@ class App extends Component {
         name: "",
         email: "",
         purpose: "",
-        favoriteLocations: [32, 2]
+        favoriteLocations: [44, 2]
       },
       areas: [],
-      listings:[],
-      currentView: "AreaContainer"
+      listings:["/api/v1/listings/3", "/api/v1/listings/44"],
+      currentView: "LocationContainer"
     };
   }
 

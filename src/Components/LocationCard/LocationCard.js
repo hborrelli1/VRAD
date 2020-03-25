@@ -15,19 +15,19 @@ const LocationCard = props => {
  const {favoriteLocations} = props
   const isFavorite = (id) => {
     if(favoriteLocations.includes(id)){
-      return "active";
+      return "favorite";
     } else {
-      return "inactive";
+      return "add-to-favorites";
     }
   }
 
   return (
     <article className = "card">
-      <h2 aria-label = {name}>{name}</h2>
-      <h2 aria-label = {address.street}>{address.street}</h2>
+      <h2 className = "card-heading" aria-label = {name}>{name}</h2>
+      <h3 className = "card-sub-heading" aria-label = {address.street}>{address.street}</h3>
       <div className= "img-container"><img src = {`${IMG_PATH+listing_id}_a.jpg`}/></div>
       <button className = {`${isFavorite(listing_id)}`} onClick={event => props.favorite(listing_id)}>
-        Favorite Listing
+        {`${isFavorite(listing_id)}`}
       </button>
       <button onClick={event => props.goToListing(listing_id,'LocationListingCard')}>
         Go to Listing
