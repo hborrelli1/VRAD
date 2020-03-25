@@ -17,7 +17,8 @@ class App extends Component {
         favoriteLocations: [32, 2]
       },
       areas: [],
-      currentView: "LocationContainer"
+      listings:[],
+      currentView: "AreaContainer"
     };
   }
 
@@ -56,8 +57,8 @@ class App extends Component {
     });
   };
 
-  changeView = (view, destinationURL) => {
-    this.setState({ currentView: view });
+  changeView = (view, destinationURL,areaListings) => {
+    this.setState({ currentView: view,listings:areaListings });
   }
 
   goToFavRentals = () => {
@@ -88,14 +89,7 @@ class App extends Component {
   };
 
   render() {
-    const listingTempData = [
-      "/api/v1/listings/3",
-      "/api/v1/listings/44",
-      "/api/v1/listings/221",
-      "/api/v1/listings/744",
-      "/api/v1/listings/90",
-      "/api/v1/listings/310"
-    ];
+    const {listings} = this.state;
     return (
       <main className="App">
         {!this.state.isLoggedIn && <Login login={this.login} />}
@@ -117,7 +111,7 @@ class App extends Component {
             <LocationContainer
               goToListing={this.goToListing}
               favorite={this.favorite}
-              listings={listingTempData}
+              listings={listings}
               favoriteLocations = {this.state.userInfo.favoriteLocations}
             />
           )}
