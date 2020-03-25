@@ -1,3 +1,1 @@
-const BASE_URL = '';
-
-export default BASE_URL;
+export const BASE_URL = 'http://localhost:3001';
