@@ -2,12 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './AreaCard.scss';
 
+import { Link } from 'react-router-dom';
+
 const AreaCard = ({ areaInfo, changeView }) => {
   const areaTitle = areaInfo.name !== areaInfo.nickName
     ? `${areaInfo.name} - (${areaInfo.nickName})`
     : areaInfo.name;
 
   const buttonText = `View ${areaInfo.listings.length} Listings in ${areaInfo.nickName}`;
+
+  const areaURL = areaInfo.name.toLowerCase().split(' ').join('-');
 
   return (
     <div className="area-card">
@@ -16,11 +20,12 @@ const AreaCard = ({ areaInfo, changeView }) => {
         <p className="location">{areaInfo.location}</p>
         <p>{areaInfo.about}</p>
       </div>
-      <button
+      <Link
+        to={`/areas/${areaURL}`}
         onClick={() => changeView('LocationContainer', areaInfo.details,areaInfo.listings)}
       >
         {buttonText}
-      </button>
+      </Link>
     </div>
   );
 }
