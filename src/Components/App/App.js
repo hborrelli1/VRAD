@@ -6,12 +6,13 @@ import AreaContainer from "../AreaContainer/AreaContainer";
 import LocationContainer from "../LocationContainer/LocationContainer";
 import "./App.scss";
 import { Route, Redirect } from 'react-router-dom';
+import Dashboard from "../Dashboard/Dashboard";
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      isLoggedIn: false,
+      isLoggedIn: true,
       userInfo: {
         name: "",
         email: "",
@@ -39,7 +40,6 @@ class App extends Component {
       return fetch(BASE_URL + AREA_ENDPOINT)
         .then(response => response.json())
         .then(areaInfo => {
-          console.log(areaInfo);
           return {
             nickName: area.area,
             details:area.details,
@@ -99,7 +99,7 @@ class App extends Component {
           toggleLogin={this.toggleLogin}
         />
 
-        <Route exact path="/">
+        <Route path="/">
           {
             !this.state.isLoggedIn
               ? <Login login={this.login} />
@@ -107,34 +107,15 @@ class App extends Component {
                   userInfo={this.state.userInfo}
                   goToFavRentals={this.goToFavRentals}
                   areas={this.state.areas}
+                  changeView = {this.changeView}
+                  goToListing = {this.goToListing}
+                  favorite = {this.favorite}
+                  listings = {this.state.listings}
                 />
           }
         </Route>
 
-      {this.state.isLoggedIn && (
 
-      )}
-
-      {this.state.isLoggedIn && (
-        <Route
-          path="/dashboard/"
-          render={() => <AreaContainer
-                            areas={this.state.areas}
-                            changeView={this.changeView}
-                        />}
-        />
-
-      )}
-
-      <Route
-        path="/areas"
-        render={() => <LocationContainer
-                        goToListing={this.goToListing}
-                        favorite={this.favorite}
-                        listings={listings}
-                        favoriteLocations = {this.state.userInfo.favoriteLocations}
-                      />}
-      />
 
 
       </main>
@@ -143,3 +124,27 @@ class App extends Component {
 }
 
 export default App;
+
+
+//
+//
+// {this.state.isLoggedIn && (
+//   <Route
+//     path="/dashboard/"
+//     render={() => <AreaContainer
+//                       areas={this.state.areas}
+//                       changeView={this.changeView}
+//                   />}
+//   />
+//
+// )}
+//
+// <Route
+//   path="/areas"
+//   render={() => <LocationContainer
+//                   goToListing={this.goToListing}
+//                   favorite={this.favorite}
+//                   listings={listings}
+//                   favoriteLocations = {this.state.userInfo.favoriteLocations}
+//                 />}
+// />

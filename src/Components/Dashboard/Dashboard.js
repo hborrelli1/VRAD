@@ -1,10 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import UserProfile from '../UserProfile/UserProfile';
+import {Switch, Route} from "react-router-dom";
+import AreaContainer from "../AreaContainer/AreaContainer";
+import LocationContainer from "../LocationContainer/LocationContainer";
 
-const Dashboard = ({ userInfo, areas, goToFavRentals, goToListing, favorite, listings }) => {
+const Dashboard = ({ userInfo, areas, goToFavRentals, goToListing, favorite,listings, changeView }) => {
   const { favoriteLocations } = userInfo;
-
   return (
     <main>
       <UserProfile
@@ -16,11 +18,11 @@ const Dashboard = ({ userInfo, areas, goToFavRentals, goToListing, favorite, lis
         <Route exact path="/" render={() => (
           <AreaContainer
             areas={areas}
-            changeView={this.changeView}
+            changeView={changeView}
           />)}
         />
 
-        <Route exact path="/:area" render={() => (
+      <Route exact path="/areas/:id" render={() => (
           <LocationContainer
             goToListing={goToListing}
             favorite={favorite}
