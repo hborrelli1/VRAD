@@ -9,7 +9,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      isLoggedIn: true,
+      isLoggedIn: false,
       userInfo: {
         name: "",
         email: "",
@@ -18,7 +18,7 @@ class App extends Component {
       },
       areas: [],
       listings:["/api/v1/listings/3", "/api/v1/listings/44"],
-      currentView: "LocationContainer"
+      currentView: ""
     };
   }
 
