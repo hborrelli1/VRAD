@@ -7,7 +7,7 @@ class LocationContainer extends React.Component {
   constructor() {
     super();
     this.state = {
-      data: []
+      listingData: []
     };
   }
 
@@ -22,7 +22,7 @@ class LocationContainer extends React.Component {
         });
     });
     Promise.all(promises).then(data => {
-      this.setState({ data: data });
+      this.setState({ listingData: data });
     });
   };
 
@@ -31,16 +31,18 @@ class LocationContainer extends React.Component {
   }
 
   render() {
+    const {listingData} = this.state;
+    const {favorite,goToListing,favoriteLocations} = this.props;
     return (
       <section className = "location-conatiner">
-        {this.state.data.map(listing => {
+        {listingData.map(listing => {
           return (
             <LocationCard
-              favorite={this.props.favorite}
+              favorite={favorite}
               key={listing.listing_id}
-              data={listing}
-              goToListing={this.props.goToListing}
-              favoriteLocations = {this.props.favoriteLocations}
+              listingData={listing}
+              goToListing={goToListing}
+              favoriteLocations = {favoriteLocations}
             />
           );
         })}
