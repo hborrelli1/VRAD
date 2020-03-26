@@ -58,7 +58,7 @@ describe("Test", () => {
     fireEvent.click(areaButtonEl);
 
     expect(mockChangeView).toHaveBeenCalledTimes(1);
-    expect(mockChangeView).toHaveBeenCalledWith('LocationContainer', "/api/v1/areas/590");
+    expect(mockChangeView).toHaveBeenCalledWith('LocationContainer', "/api/v1/areas/590",["/api/v1/listings/3", "/api/v1/listings/44", "/api/v1/listings/221", "/api/v1/listings/744", "/api/v1/listings/90", "/api/v1/listings/310"]);
   });
 
 })

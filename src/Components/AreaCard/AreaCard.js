@@ -17,7 +17,7 @@ const AreaCard = ({ areaInfo, changeView }) => {
         <p>{areaInfo.about}</p>
       </div>
       <button
-        onClick={() => changeView('LocationContainer', areaInfo.details)}
+        onClick={() => changeView('LocationContainer', areaInfo.details,areaInfo.listings)}
       >
         {buttonText}
       </button>

@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import Login from "../Login/Login.js";
 import UserProfile from "../UserProfile/UserProfile";
-import AreaContainer from "../AreaContainer/AreaContainer"
+import AreaContainer from "../AreaContainer/AreaContainer";
+import LocationContainer from "../LocationContainer/LocationContainer";
 import "./App.scss";
 
 class App extends Component {
@@ -13,9 +14,10 @@ class App extends Component {
         name: "",
         email: "",
         purpose: "",
-        favoriteLocations: [32, 2]
+        favoriteLocations: [44, 2]
       },
       areas: [],
+      listings:["/api/v1/listings/3", "/api/v1/listings/44"],
       currentView: ""
     };
   }
@@ -50,20 +52,44 @@ class App extends Component {
     const userState = this.state.userInfo;
     const updatedState = this.setState({
       userInfo: { ...userState, ...userData },
-      isLoggedIn:true,
-      currentView:'AreaContainer'
+      isLoggedIn: true,
+      currentView: "AreaContainer"
     });
   };
 
-  changeView = (view, destinationURL) => {
-    this.setState({ currentView: view });
+  changeView = (view, destinationURL,areaListings) => {
+    this.setState({ currentView: view,listings:areaListings });
   }
 
   goToFavRentals = () => {
     console.log("clicked");
   };
 
+  goToListing = (listing_id, view) => {
+    this.setState({ currentView: view });
+  };
+
+
+  favorite = id => {
+    const { favoriteLocations } = this.state.userInfo;
+    let updatedState;
+    if (favoriteLocations.includes(id)) {
+      let filteredArray = favoriteLocations.filter(location => location !== id);
+      updatedState = {
+        ...this.state.userInfo,
+        favoriteLocations: filteredArray
+      };
+    } else {
+      updatedState = {
+        ...this.state.userInfo,
+        favoriteLocations: [...favoriteLocations, id]
+      };
+    }
+    this.setState({ userInfo: updatedState });
+  };
+
   render() {
+    const {listings} = this.state;
     return (
       <main className="App">
         {!this.state.isLoggedIn && <Login login={this.login} />}
@@ -79,6 +105,16 @@ class App extends Component {
             changeView={this.changeView}
           />
         )}
+
+        {this.state.isLoggedIn &&
+          this.state.currentView === "LocationContainer" && (
+            <LocationContainer
+              goToListing={this.goToListing}
+              favorite={this.favorite}
+              listings={listings}
+              favoriteLocations = {this.state.userInfo.favoriteLocations}
+            />
+          )}
       </main>
     );
   }
