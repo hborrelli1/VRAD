@@ -4,10 +4,10 @@ import LocationCard from './LocationCard';
 import '@testing-library/jest-dom';
 
 describe("Test", () => {
-  let listingDetails;
+  let listingData;
   let favoriteLocations;
   beforeEach(() => {
-    listingDetails = {
+    listingData = {
             "listing_id": 3,
             "area_id": 590,
             "name": "Hip RiNo Party Spot",
@@ -40,8 +40,8 @@ describe("Test", () => {
     const { getByText } = render(
       <LocationCard
         favorite={mockFavorite}
-        key={listingDetails.listing_id}
-        data={listingDetails}
+        key={listingData.listing_id}
+        listingData={listingData}
         goToListing={mockChangeView}
         favoriteLocations = {favoriteLocations}
       />
@@ -61,8 +61,8 @@ describe("Test", () => {
     const { getByText } = render(
       <LocationCard
         favorite={mockFavorite}
-        key={listingDetails.listing_id}
-        data={listingDetails}
+        key={listingData.listing_id}
+        listingData={listingData}
         goToListing={mockChangeView}
         favoriteLocations = {favoriteLocations}
       />
@@ -81,8 +81,8 @@ describe("Test", () => {
     const { getByText } = render(
       <LocationCard
         favorite={mockFavorite}
-        key={listingDetails.listing_id}
-        data={listingDetails}
+        key={listingData.listing_id}
+        listingData={listingData}
         goToListing={mockChangeView}
         favoriteLocations = {favoriteLocations}
       />
