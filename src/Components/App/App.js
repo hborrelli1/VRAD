@@ -1,9 +1,6 @@
 import React, { Component } from "react";
 import Login from "../Login/Login.js";
 import Header from "../Header/Header.js";
-import UserProfile from "../UserProfile/UserProfile";
-import AreaContainer from "../AreaContainer/AreaContainer";
-import LocationContainer from "../LocationContainer/LocationContainer";
 import "./App.scss";
 import { Route, Redirect } from 'react-router-dom';
 import Dashboard from "../Dashboard/Dashboard";
