@@ -57,7 +57,6 @@ class Login extends Component {
         email: email,
         purpose: purpose
       });
-      console.info("Valid Form");
     } else {
       console.error("Invalid Form");
     }

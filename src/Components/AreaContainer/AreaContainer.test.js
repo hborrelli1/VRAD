@@ -2,6 +2,7 @@ import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import AreaContainer from './AreaContainer';
 import '@testing-library/jest-dom';
+import { BrowserRouter } from 'react-router-dom';
 
 describe("AreaContainer", () => {
   it("should display a list of areas", () => {
@@ -21,7 +22,9 @@ describe("AreaContainer", () => {
     ];
 
     const { getByText } = render(
-      <AreaContainer areas={areaData} />
+      <BrowserRouter>
+        <AreaContainer areas={areaData} />
+      </BrowserRouter>
     );
 
     const areaEl1 = getByText('River North - (RiNo)');

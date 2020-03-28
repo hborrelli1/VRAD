@@ -1,15 +1,18 @@
 import React, { Component } from "react";
 import Login from "../Login/Login.js";
+import Header from "../Header/Header.js";
 import UserProfile from "../UserProfile/UserProfile";
 import AreaContainer from "../AreaContainer/AreaContainer";
 import LocationContainer from "../LocationContainer/LocationContainer";
 import "./App.scss";
+import { Route, Redirect } from 'react-router-dom';
+import Dashboard from "../Dashboard/Dashboard";
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      isLoggedIn: false,
+      isLoggedIn: true,
       userInfo: {
         name: "",
         email: "",
@@ -18,7 +21,7 @@ class App extends Component {
       },
       areas: [],
       listings:["/api/v1/listings/3", "/api/v1/listings/44"],
-      currentView: ""
+      // currentView: ""
     };
   }
 
@@ -37,7 +40,6 @@ class App extends Component {
       return fetch(BASE_URL + AREA_ENDPOINT)
         .then(response => response.json())
         .then(areaInfo => {
-          console.log(areaInfo);
           return {
             nickName: area.area,
             details:area.details,
@@ -92,32 +94,57 @@ class App extends Component {
     const {listings} = this.state;
     return (
       <main className="App">
-        {!this.state.isLoggedIn && <Login login={this.login} />}
-        {this.state.isLoggedIn && (
-          <UserProfile
-            userInfo={this.state.userInfo}
-            goToFavRentals={this.goToFavRentals}
-          />
-        )}
-        {this.state.isLoggedIn && this.state.currentView ==="AreaContainer" && (
-          <AreaContainer
-            areas={this.state.areas}
-            changeView={this.changeView}
-          />
-        )}
+        <Header
+          isLoggedIn={this.state.isLoggedIn}
+          toggleLogin={this.toggleLogin}
+        />
 
-        {this.state.isLoggedIn &&
-          this.state.currentView === "LocationContainer" && (
-            <LocationContainer
-              goToListing={this.goToListing}
-              favorite={this.favorite}
-              listings={listings}
-              favoriteLocations = {this.state.userInfo.favoriteLocations}
-            />
-          )}
+        <Route path="/">
+          {
+            !this.state.isLoggedIn
+              ? <Login login={this.login} />
+              : <Dashboard
+                  userInfo={this.state.userInfo}
+                  goToFavRentals={this.goToFavRentals}
+                  areas={this.state.areas}
+                  changeView = {this.changeView}
+                  goToListing = {this.goToListing}
+                  favorite = {this.favorite}
+                  listings = {this.state.listings}
+                />
+          }
+        </Route>
+
+
+
+
       </main>
     );
   }
 }
 
 export default App;
+
+
+//
+//
+// {this.state.isLoggedIn && (
+//   <Route
+//     path="/dashboard/"
+//     render={() => <AreaContainer
+//                       areas={this.state.areas}
+//                       changeView={this.changeView}
+//                   />}
+//   />
+//
+// )}
+//
+// <Route
+//   path="/areas"
+//   render={() => <LocationContainer
+//                   goToListing={this.goToListing}
+//                   favorite={this.favorite}
+//                   listings={listings}
+//                   favoriteLocations = {this.state.userInfo.favoriteLocations}
+//                 />}
+// />
