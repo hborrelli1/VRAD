@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './Header.scss';
+import { Link } from 'react-router-dom';
 
 const Header = ({ isLoggedIn, toggleLogin }) => {
   const blankUser = {
@@ -11,7 +12,6 @@ const Header = ({ isLoggedIn, toggleLogin }) => {
       purpose: "",
       favoriteLocations: []
     },
-    areas: [],
     listings:[],
     currentView: 'Login'
   }
@@ -20,9 +20,10 @@ const Header = ({ isLoggedIn, toggleLogin }) => {
     <header>
       <div className="logo">VRAD</div>
       {isLoggedIn && (
-        <button
+        <Link
+          to="/"
           onClick={() => toggleLogin(blankUser)}
-        >Log Out</button>
+        >Log Out</Link>
       )}
     </header>
   )
