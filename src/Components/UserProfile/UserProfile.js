@@ -25,4 +25,9 @@ const UserProfile = ({ userInfo, goToFavRentals }) => {
   )
 }
 
+UserProfile.propTypes = {
+  userInfo: PropTypes.object,
+  goToFavRentals: PropTypes.func
+}
+
 export default UserProfile;

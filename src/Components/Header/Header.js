@@ -28,4 +28,9 @@ const Header = ({ isLoggedIn, toggleLogin }) => {
   )
 }
 
+Header.propTypes = {
+  isLoggedIn: PropTypes.bool,
+  toggleLogin: PropTypes.func
+}
+
 export default Header;

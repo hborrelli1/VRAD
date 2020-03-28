@@ -36,4 +36,14 @@ const Dashboard = ({ userInfo, areas, goToFavRentals, goToListing, favorite,list
   )
 }
 
+Dashboard.propTypes = {
+  userInfo: PropTypes.object,
+  goToFavRentals: PropTypes.func,
+  areas: PropTypes.array,
+  changeView: PropTypes.func,
+  goToListing: PropTypes.func,
+  favorite: PropTypes.func,
+  listings: PropTypes.array
+}
+
 export default Dashboard

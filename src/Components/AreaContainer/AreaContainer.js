@@ -20,4 +20,9 @@ const AreaContainer = ({ areas, changeView }) => {
   )
 }
 
+AreaContainer.propTypes = {
+  areas: PropTypes.array
+  changeView: PropTypes.func
+}
+
 export default AreaContainer;
