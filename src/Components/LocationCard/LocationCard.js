@@ -13,7 +13,7 @@ const LocationCard = props => {
     listing_id,
     details
   } = props.listingData;
-  const { favoriteLocations } = props;
+  const { favoriteLocations,areaName } = props;
   const isFavorite = id => {
     if (favoriteLocations.includes(id)) {
       return "favorite";
@@ -39,7 +39,7 @@ const LocationCard = props => {
         {`${isFavorite(listing_id)}`}
       </button>
       <Link
-        to={`/areas/${area_id}/${urlName}`}
+        to={`/areas/${areaName}/${urlName}`}
         onClick={event => props.goToListing(props.listingData, "LocationListingCard")}
       >
         Go to Listing

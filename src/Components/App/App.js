@@ -27,11 +27,13 @@ class App extends Component {
   }
 
   componentDidMount = () => {
+
     fetch('http://localhost:3001/api/v1/areas')
       .then(res => res.json())
       .then(areaData => this.getAreaDetails(areaData))
       .then(areasList => this.setState({ areas: areasList }))
       .catch(err => console.log(err.message));
+
   }
 
   getAreaDetails = (areaData) => {
@@ -93,12 +95,16 @@ class App extends Component {
 
   toggleLogin = (blankUser) => {
     this.setState({ ...blankUser })
+    return <Redirect to = "/"/>
   }
 
   render() {
+
     const {listings} = this.state;
     return (
+
       <main className="App">
+        <Redirect to = "/"/>
         <Header
           isLoggedIn={this.state.isLoggedIn}
           toggleLogin={this.toggleLogin}
@@ -120,7 +126,7 @@ class App extends Component {
                 />
           }
         </Route>
-        
+
       </main>
     );
   }
