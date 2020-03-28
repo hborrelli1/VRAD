@@ -21,7 +21,7 @@ const AreaContainer = ({ areas, changeView }) => {
 }
 
 AreaContainer.propTypes = {
-  areas: PropTypes.array
+  areas: PropTypes.array,
   changeView: PropTypes.func
 }
 
