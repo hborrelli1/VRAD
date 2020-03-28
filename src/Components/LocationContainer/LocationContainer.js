@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { BASE_URL } from "../../constants/Constants";
 import LocationCard from "../LocationCard/LocationCard";
+import {apiCall} from "./apiCalls.js";
 
 class LocationContainer extends React.Component {
   constructor() {
@@ -11,19 +12,10 @@ class LocationContainer extends React.Component {
     };
   }
 
-  locationContainerHelper = listings => {
-    const promises = listings.map(listing => {
-      return fetch(BASE_URL + listing)
-        .then(res => res.json())
-        .then(listing => {
-          return {
-            ...listing
-          };
-        });
-    });
-    Promise.all(promises).then(data => {
-      this.setState({ listingData: data });
-    });
+  locationContainerHelper = async (listings) => {
+    let data = await apiCall(listings);
+    this.setState({ listingData: data });
+
   };
 
   componentDidMount() {
@@ -35,7 +27,8 @@ class LocationContainer extends React.Component {
     const { favorite, goToListing, favoriteLocations } = this.props;
     return (
       <section className="location-conatiner">
-        {listingData.map(listing => {
+        {
+          listingData.map(listing => {
           return (
             <LocationCard
               favorite={favorite}
