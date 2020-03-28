@@ -24,7 +24,7 @@ class LocationContainer extends React.Component {
 
   render() {
     const { listingData } = this.state;
-    const { favorite, goToListing, favoriteLocations } = this.props;
+    const { favorite, isFavorite, goToListing, favoriteLocations } = this.props;
     return (
       <section className="location-conatiner">
         {
@@ -32,6 +32,7 @@ class LocationContainer extends React.Component {
           return (
             <LocationCard
               favorite={favorite}
+              isFavorite={isFavorite}
               key={listing.listing_id}
               listingData={listing}
               goToListing={goToListing}

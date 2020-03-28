@@ -7,7 +7,7 @@ import LocationContainer from "../LocationContainer/LocationContainer";
 import LocationListingCard from "../LocationListingCard/LocationListingCard";
 import './Dashboard.scss';
 
-const Dashboard = ({ userInfo, areas, goToFavRentals, goToListing, favorite,listings, changeView, currentListing }) => {
+const Dashboard = ({ userInfo, areas, goToFavRentals, goToListing, favorite, isFavorite,listings, changeView, currentListing }) => {
   const { favoriteLocations } = userInfo;
   return (
     <div className="dashboard">
@@ -28,6 +28,7 @@ const Dashboard = ({ userInfo, areas, goToFavRentals, goToListing, favorite,list
           <LocationContainer
             goToListing={goToListing}
             favorite={favorite}
+            isFavorite={isFavorite}
             listings={listings}
             favoriteLocations={favoriteLocations}
           />)}
@@ -36,7 +37,7 @@ const Dashboard = ({ userInfo, areas, goToFavRentals, goToListing, favorite,list
       <Route exact path="/areas/:id/:location_id" render={() => (
         <LocationListingCard
           favorite={favorite}
-          favoriteLocations={favoriteLocations}
+          isFavorite={isFavorite}
           currentListing={currentListing}
         />)}
       />

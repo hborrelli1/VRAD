@@ -91,6 +91,15 @@ class App extends Component {
     this.setState({ userInfo: updatedState });
   };
 
+  isFavorite = id => {
+    const { favoriteLocations } = this.state.userInfo;
+    if (favoriteLocations.includes(id)) {
+      return "favorite";
+    } else {
+      return "add-to-favorites";
+    }
+  };
+
   toggleLogin = (blankUser) => {
     this.setState({ ...blankUser })
   }
@@ -115,12 +124,13 @@ class App extends Component {
                   changeView = {this.changeView}
                   goToListing = {this.goToListing}
                   favorite = {this.favorite}
+                  isFavorite = {this.isFavorite}
                   listings = {this.state.listings}
                   currentListing={this.state.currentListing}
                 />
           }
         </Route>
-        
+
       </main>
     );
   }

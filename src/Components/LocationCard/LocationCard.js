@@ -13,14 +13,14 @@ const LocationCard = props => {
     listing_id,
     details
   } = props.listingData;
-  const { favoriteLocations } = props;
-  const isFavorite = id => {
-    if (favoriteLocations.includes(id)) {
-      return "favorite";
-    } else {
-      return "add-to-favorites";
-    }
-  };
+  const { favoriteLocations, isFavorite } = props;
+  // const isFavorite = id => {
+  //   if (favoriteLocations.includes(id)) {
+  //     return "favorite";
+  //   } else {
+  //     return "add-to-favorites";
+  //   }
+  // };
   const urlName = name.toLowerCase().split(' ').join('-');
 
   return (
