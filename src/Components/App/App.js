@@ -21,6 +21,7 @@ class App extends Component {
       },
       areas: [],
       listings:["/api/v1/listings/3", "/api/v1/listings/44"],
+      currentListing: {},
       // currentView: ""
     };
   }
@@ -59,7 +60,7 @@ class App extends Component {
     });
   };
 
-  changeView = (view, destinationURL,areaListings) => {
+  changeView = (view, destinationURL, areaListings) => {
     this.setState({ currentView: view,listings:areaListings });
   }
 
@@ -67,8 +68,8 @@ class App extends Component {
     console.log("clicked");
   };
 
-  goToListing = (listing_id, view) => {
-    this.setState({ currentView: view });
+  goToListing = (listingData, view) => {
+    this.setState({ currentView: view, currentListing: listingData });
   };
 
 
@@ -115,13 +116,11 @@ class App extends Component {
                   goToListing = {this.goToListing}
                   favorite = {this.favorite}
                   listings = {this.state.listings}
+                  currentListing={this.state.currentListing}
                 />
           }
         </Route>
-
-
-
-
+        
       </main>
     );
   }

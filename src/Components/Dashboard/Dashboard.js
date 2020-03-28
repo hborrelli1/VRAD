@@ -4,9 +4,10 @@ import UserProfile from '../UserProfile/UserProfile';
 import {Switch, Route} from "react-router-dom";
 import AreaContainer from "../AreaContainer/AreaContainer";
 import LocationContainer from "../LocationContainer/LocationContainer";
+import LocationListingCard from "../LocationListingCard/LocationListingCard";
 import './Dashboard.scss';
 
-const Dashboard = ({ userInfo, areas, goToFavRentals, goToListing, favorite,listings, changeView }) => {
+const Dashboard = ({ userInfo, areas, goToFavRentals, goToListing, favorite,listings, changeView, currentListing }) => {
   const { favoriteLocations } = userInfo;
   return (
     <div className="dashboard">
@@ -23,14 +24,22 @@ const Dashboard = ({ userInfo, areas, goToFavRentals, goToListing, favorite,list
           />)}
         />
 
-      <Route exact path="/areas/:id" render={() => (
+        <Route exact path="/areas/:id" render={() => (
           <LocationContainer
             goToListing={goToListing}
             favorite={favorite}
             listings={listings}
-            favoriteLocations = {favoriteLocations}
+            favoriteLocations={favoriteLocations}
           />)}
         />
+
+      <Route exact path="/areas/:id/:location_id" render={() => (
+        <LocationListingCard
+          favorite={favorite}
+          favoriteLocations={favoriteLocations}
+          currentListing={currentListing}
+        />)}
+      />
 
       </Switch>
     </div>

@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { BASE_URL } from "../../constants/Constants";
 import { IMG_PATH } from "../../constants/Constants";
+import { Link } from 'react-router-dom';
 
 const LocationCard = props => {
   const {
@@ -20,6 +21,7 @@ const LocationCard = props => {
       return "add-to-favorites";
     }
   };
+  const urlName = name.toLowerCase().split(' ').join('-');
 
   return (
     <article className="card">
@@ -36,11 +38,12 @@ const LocationCard = props => {
       >
         {`${isFavorite(listing_id)}`}
       </button>
-      <button
-        onClick={event => props.goToListing(listing_id, "LocationListingCard")}
+      <Link
+        to={`/areas/${area_id}/${urlName}`}
+        onClick={event => props.goToListing(props.listingData, "LocationListingCard")}
       >
         Go to Listing
-      </button>
+      </Link>
     </article>
   );
 };
