@@ -22,7 +22,7 @@ const AreaCard = ({ areaInfo, changeView }) => {
       </div>
       <Link
         to={`/areas/${areaURL}`}
-        onClick={() => changeView('LocationContainer', areaInfo.details,areaInfo.listings)}
+        onClick={() => changeView('LocationContainer', areaInfo.details, areaInfo.listings)}
       >
         {buttonText}
       </Link>

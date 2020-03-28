@@ -24,13 +24,14 @@ class LocationContainer extends React.Component {
 
   render() {
     const { listingData } = this.state;
-    const { favorite, goToListing, favoriteLocations } = this.props;
+    const { favorite, goToListing, favoriteLocations,areaName } = this.props;
     return (
       <section className="location-conatiner">
         {
           listingData.map(listing => {
           return (
             <LocationCard
+              areaName = {areaName}
               favorite={favorite}
               key={listing.listing_id}
               listingData={listing}

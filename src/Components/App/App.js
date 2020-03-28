@@ -18,16 +18,19 @@ class App extends Component {
       },
       areas: [],
       listings:["/api/v1/listings/3", "/api/v1/listings/44"],
+      currentListing: {},
       // currentView: ""
     };
   }
 
   componentDidMount = () => {
+
     fetch('http://localhost:3001/api/v1/areas')
       .then(res => res.json())
       .then(areaData => this.getAreaDetails(areaData))
       .then(areasList => this.setState({ areas: areasList }))
       .catch(err => console.log(err.message));
+
   }
 
   getAreaDetails = (areaData) => {
@@ -56,7 +59,7 @@ class App extends Component {
     });
   };
 
-  changeView = (view, destinationURL,areaListings) => {
+  changeView = (view, destinationURL, areaListings) => {
     this.setState({ currentView: view,listings:areaListings });
   }
 
@@ -64,8 +67,8 @@ class App extends Component {
     console.log("clicked");
   };
 
-  goToListing = (listing_id, view) => {
-    this.setState({ currentView: view });
+  goToListing = (listingData, view) => {
+    this.setState({ currentView: view, currentListing: listingData });
   };
 
 
@@ -89,12 +92,16 @@ class App extends Component {
 
   toggleLogin = (blankUser) => {
     this.setState({ ...blankUser })
+    return <Redirect to = "/"/>
   }
 
   render() {
+
     const {listings} = this.state;
     return (
+
       <main className="App">
+        <Redirect to = "/"/>
         <Header
           isLoggedIn={this.state.isLoggedIn}
           toggleLogin={this.toggleLogin}
@@ -112,12 +119,10 @@ class App extends Component {
                   goToListing = {this.goToListing}
                   favorite = {this.favorite}
                   listings = {this.state.listings}
+                  currentListing={this.state.currentListing}
                 />
           }
         </Route>
-
-
-
 
       </main>
     );
