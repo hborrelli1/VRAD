@@ -30,4 +30,9 @@ const AreaCard = ({ areaInfo, changeView }) => {
   );
 }
 
+AreaCard.propTypes = {
+  areaInfo: PropTypes.object,
+  changeView: PropTypes.func
+}
+
 export default AreaCard;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './UserProfile.scss';
 
 const UserProfile = ({ userInfo, goToFavRentals }) => {
@@ -23,6 +24,11 @@ const UserProfile = ({ userInfo, goToFavRentals }) => {
       <div></div>
     </div>
   )
+}
+
+UserProfile.propTypes = {
+  userInfo: PropTypes.object,
+  goToFavRentals: PropTypes.func
 }
 
 export default UserProfile;
