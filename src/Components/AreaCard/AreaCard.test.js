@@ -4,7 +4,7 @@ import AreaCard from './AreaCard';
 import '@testing-library/jest-dom';
 import { BrowserRouter } from 'react-router-dom';
 
-describe("Test", () => {
+describe("AreaCard Tests", () => {
   let area;
 
   beforeEach(() => {

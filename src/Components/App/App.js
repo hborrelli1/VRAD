@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import Login from "../Login/Login.js";
 import Header from "../Header/Header.js";
-import UserProfile from "../UserProfile/UserProfile";
-import AreaContainer from "../AreaContainer/AreaContainer";
-import LocationContainer from "../LocationContainer/LocationContainer";
+
 import Footer from "../Footer/Footer";
 import "./App.scss";
 import { Route, Redirect } from 'react-router-dom';
@@ -28,11 +26,13 @@ class App extends Component {
   }
 
   componentDidMount = () => {
+
     fetch('http://localhost:3001/api/v1/areas')
       .then(res => res.json())
       .then(areaData => this.getAreaDetails(areaData))
       .then(areasList => this.setState({ areas: areasList }))
       .catch(err => console.log(err.message));
+
   }
 
   getAreaDetails = (areaData) => {
@@ -103,12 +103,16 @@ class App extends Component {
 
   toggleLogin = (blankUser) => {
     this.setState({ ...blankUser })
+    return <Redirect to = "/"/>
   }
 
   render() {
+
     const {listings} = this.state;
     return (
+
       <main className="App">
+        <Redirect to = "/"/>
         <Header
           isLoggedIn={this.state.isLoggedIn}
           toggleLogin={this.toggleLogin}
@@ -139,27 +143,3 @@ class App extends Component {
 }
 
 export default App;
-
-
-//
-//
-// {this.state.isLoggedIn && (
-//   <Route
-//     path="/dashboard/"
-//     render={() => <AreaContainer
-//                       areas={this.state.areas}
-//                       changeView={this.changeView}
-//                   />}
-//   />
-//
-// )}
-//
-// <Route
-//   path="/areas"
-//   render={() => <LocationContainer
-//                   goToListing={this.goToListing}
-//                   favorite={this.favorite}
-//                   listings={listings}
-//                   favoriteLocations = {this.state.userInfo.favoriteLocations}
-//                 />}
-// />

@@ -13,14 +13,7 @@ const LocationCard = props => {
     listing_id,
     details
   } = props.listingData;
-  const { favoriteLocations, isFavorite } = props;
-  // const isFavorite = id => {
-  //   if (favoriteLocations.includes(id)) {
-  //     return "favorite";
-  //   } else {
-  //     return "add-to-favorites";
-  //   }
-  // };
+  const { favoriteLocations, isFavorite, areaName } = props;
   const urlName = name.toLowerCase().split(' ').join('-');
 
   return (
@@ -39,10 +32,10 @@ const LocationCard = props => {
         {`${isFavorite(listing_id)}`}
       </button>
       <Link
-        to={`/areas/${area_id}/${urlName}`}
+        to={`/areas/${areaName}/${urlName}`}
         onClick={event => props.goToListing(props.listingData, "LocationListingCard")}
       >
-        Go to Listing
+        <button>Go to Listing</button>
       </Link>
     </article>
   );
