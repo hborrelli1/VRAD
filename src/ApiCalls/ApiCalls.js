@@ -1,8 +1,8 @@
 
-import { BASE_URL } from "../../constants/Constants";
+import { BASE_URL } from "../constants/Constants";
 
 
-export const apiCall = (listings) => {
+export const fetchLocations = (listings) => {
   const promises = listings.map(listing => {
     return fetch(BASE_URL + listing)
       .then(res => res.json())
@@ -13,5 +13,4 @@ export const apiCall = (listings) => {
       });
   });
    return Promise.all(promises)
-
 };

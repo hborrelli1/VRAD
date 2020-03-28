@@ -2,8 +2,8 @@ import React from "react";
 import { render, fireEvent, wait } from "@testing-library/react";
 import LocationContainer from "./LocationContainer";
 import "@testing-library/jest-dom";
-import {apiCall} from "./apiCalls";
-jest.mock('./apiCalls')
+import {fetchLocations} from "../../ApiCalls/ApiCalls.js";
+jest.mock("../../ApiCalls/ApiCalls.js")
 
 describe("Test", () => {
   let listingDetails;
@@ -44,7 +44,7 @@ describe("Test", () => {
   it("should display the locations info", async () => {
     const mockFavorite = jest.fn();
     const mockChangeView = jest.fn();
-    apiCall.mockResolvedValue(response)
+    fetchLocations.mockResolvedValue(response)
     const { getByText,debug} = render(
       <LocationContainer
         favorite={mockFavorite}

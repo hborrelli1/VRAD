@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { BASE_URL } from "../../constants/Constants";
 import LocationCard from "../LocationCard/LocationCard";
-import {apiCall} from "./apiCalls.js";
+import {fetchLocations} from "../../ApiCalls/ApiCalls.js";
 
 class LocationContainer extends React.Component {
   constructor() {
@@ -13,7 +13,7 @@ class LocationContainer extends React.Component {
   }
 
   locationContainerHelper = async (listings) => {
-    let data = await apiCall(listings);
+    let data = await fetchLocations(listings);
     this.setState({ listingData: data });
 
   };
