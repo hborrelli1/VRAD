@@ -51,4 +51,4 @@ const LocationListingCard = ({ currentListing, favorite, isFavorite }) => {
   )
 }
 
-export default LocationListingCard
+export default LocationListingCard;
