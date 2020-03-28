@@ -18,7 +18,7 @@ const Header = ({ isLoggedIn, toggleLogin }) => {
 
   return (
     <header>
-      <div>VRAD</div>
+      <div className="logo">VRAD</div>
       {isLoggedIn && (
         <button
           onClick={() => toggleLogin(blankUser)}

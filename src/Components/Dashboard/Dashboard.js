@@ -4,11 +4,12 @@ import UserProfile from '../UserProfile/UserProfile';
 import {Switch, Route} from "react-router-dom";
 import AreaContainer from "../AreaContainer/AreaContainer";
 import LocationContainer from "../LocationContainer/LocationContainer";
+import './Dashboard.scss';
 
 const Dashboard = ({ userInfo, areas, goToFavRentals, goToListing, favorite,listings, changeView }) => {
   const { favoriteLocations } = userInfo;
   return (
-    <main>
+    <div className="dashboard">
       <UserProfile
         userInfo={userInfo}
         goToFavRentals={goToFavRentals}
@@ -32,7 +33,7 @@ const Dashboard = ({ userInfo, areas, goToFavRentals, goToListing, favorite,list
         />
 
       </Switch>
-    </main>
+    </div>
   )
 }
 
