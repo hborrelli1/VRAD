@@ -2,6 +2,7 @@ import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import AreaCard from './AreaCard';
 import '@testing-library/jest-dom';
+import { BrowserRouter } from 'react-router-dom';
 
 describe("Test", () => {
   let area;
@@ -29,9 +30,11 @@ describe("Test", () => {
 
   it('should display the areas info', () => {
     const { getByText } = render(
-      <AreaCard
-        areaInfo={area}
-      />
+      <BrowserRouter>
+        <AreaCard
+          areaInfo={area}
+          />
+      </BrowserRouter>
     );
 
     const areaNameEl = getByText("River North - (RiNo)");
@@ -48,10 +51,12 @@ describe("Test", () => {
   it('should be able to change views', () => {
     const mockChangeView = jest.fn();
     const { getByText } = render(
-      <AreaCard
-        areaInfo={area}
-        changeView={mockChangeView}
-      />
+      <BrowserRouter>
+        <AreaCard
+          areaInfo={area}
+          changeView={mockChangeView}
+          />
+      </BrowserRouter>
     );
     const areaButtonEl = getByText('View 6 Listings in RiNo');
 

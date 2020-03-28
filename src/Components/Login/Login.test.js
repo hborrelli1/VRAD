@@ -3,12 +3,13 @@ import Login from "./Login";
 import { render, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
+import { BrowserRouter } from 'react-router-dom';
+
+
 describe("Login", () => {
   it("sends the correct data up to app via Login", () => {
     const mockLogin = jest.fn();
-    const { debug, getByPlaceholderText, getByText,getByLabelText } = render(
-      <Login login={mockLogin} />
-    );
+    const { debug, getByPlaceholderText, getByText,getByLabelText  } = render(<BrowserRouter><Login login={mockLogin} /></BrowserRouter>);
 
     fireEvent.change(getByPlaceholderText("User Name"), {
       target: { value: "fakeUser" }

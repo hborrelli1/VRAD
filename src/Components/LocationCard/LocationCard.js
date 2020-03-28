@@ -4,7 +4,14 @@ import { BASE_URL } from "../../constants/Constants";
 import { IMG_PATH } from "../../constants/Constants";
 
 const LocationCard = props => {
-  const { address, area, area_id, name, listing_id, details } = props.listingData;
+  const {
+    address,
+    area,
+    area_id,
+    name,
+    listing_id,
+    details
+  } = props.listingData;
   const { favoriteLocations } = props;
   const isFavorite = id => {
     if (favoriteLocations.includes(id)) {
@@ -36,6 +43,17 @@ const LocationCard = props => {
       </button>
     </article>
   );
+};
+
+LocationCard.propTypes = {
+  favorite: PropTypes.func,
+  favoriteLocations: PropTypes.array,
+  goToListing: PropTypes.func,
+  listingData: PropTypes.shape({
+    address: PropTypes.object,
+    area_id: PropTypes.number,
+    details: PropTypes.object
+  })
 };
 
 export default LocationCard;
