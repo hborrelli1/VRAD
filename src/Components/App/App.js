@@ -12,7 +12,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      isLoggedIn: true,
+      isLoggedIn: false,
       userInfo: {
         name: "",
         email: "",
@@ -89,6 +89,10 @@ class App extends Component {
     }
     this.setState({ userInfo: updatedState });
   };
+
+  toggleLogin = (blankUser) => {
+    this.setState({ ...blankUser })
+  }
 
   render() {
     const {listings} = this.state;
