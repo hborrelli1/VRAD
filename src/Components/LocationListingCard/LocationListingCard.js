@@ -13,7 +13,13 @@ const LocationListingCard = ({ currentListing, favorite, isFavorite }) => {
     area,
     db_connect
   } = currentListing;
-  const locationFeatures = details.features.map(feat => <li>{feat}</li>);
+  let uniqueKey = 0;
+
+  const locationFeatures = details.features.map(feat => {
+    let featureItem = <li key={uniqueKey}>{feat}</li>;
+    uniqueKey++;
+    return featureItem;
+  });
 
   return (
     <div>
