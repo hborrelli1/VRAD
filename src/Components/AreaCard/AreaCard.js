@@ -24,7 +24,7 @@ const AreaCard = ({ areaInfo, changeView }) => {
         to={`/areas/${areaURL}`}
         onClick={() => changeView('LocationContainer', areaInfo.details, areaInfo.listings)}
       >
-        {buttonText}
+        <button>{buttonText}</button>
       </Link>
     </div>
   );

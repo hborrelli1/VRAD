@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import Login from "../Login/Login.js";
 import Header from "../Header/Header.js";
-import UserProfile from "../UserProfile/UserProfile";
-import AreaContainer from "../AreaContainer/AreaContainer";
-import LocationContainer from "../LocationContainer/LocationContainer";
+
+import Footer from "../Footer/Footer";
 import "./App.scss";
 import { Route, Redirect } from 'react-router-dom';
 import Dashboard from "../Dashboard/Dashboard";
@@ -98,6 +97,15 @@ class App extends Component {
     this.setState({ userInfo: updatedState });
   };
 
+  isFavorite = id => {
+    const { favoriteLocations } = this.state.userInfo;
+    if (favoriteLocations.includes(id)) {
+      return "favorite";
+    } else {
+      return "add-to-favorites";
+    }
+  };
+
   toggleLogin = (blankUser) => {
     this.setState({ ...blankUser })
     return <Redirect to = "/"/>
@@ -126,39 +134,17 @@ class App extends Component {
                   changeView = {this.changeView}
                   goToListing = {this.goToListing}
                   favorite = {this.favorite}
+                  isFavorite = {this.isFavorite}
                   listings = {this.state.listings}
                   currentListing={this.state.currentListing}
                 />
           }
         </Route>
 
+        <Footer />
       </main>
     );
   }
 }
 
 export default App;
-
-
-//
-//
-// {this.state.isLoggedIn && (
-//   <Route
-//     path="/dashboard/"
-//     render={() => <AreaContainer
-//                       areas={this.state.areas}
-//                       changeView={this.changeView}
-//                   />}
-//   />
-//
-// )}
-//
-// <Route
-//   path="/areas"
-//   render={() => <LocationContainer
-//                   goToListing={this.goToListing}
-//                   favorite={this.favorite}
-//                   listings={listings}
-//                   favoriteLocations = {this.state.userInfo.favoriteLocations}
-//                 />}
-// />
