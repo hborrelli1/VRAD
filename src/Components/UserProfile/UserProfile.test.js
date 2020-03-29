@@ -2,6 +2,7 @@ import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import UserProfile from './UserProfile';
 import '@testing-library/jest-dom';
+import { BrowserRouter } from 'react-router-dom';
 
 describe('UserProfile', () => {
   let userInfo;
@@ -17,7 +18,9 @@ describe('UserProfile', () => {
 
   it('Should render the component to the page', () => {
     const { getByText } = render(
-      <UserProfile userInfo={userInfo} />
+      <BrowserRouter>
+        <UserProfile userInfo={userInfo} />
+      </BrowserRouter>
     );
 
     expect(getByText('Welcome, Ham Leadbeater!')).toBeInTheDocument();
@@ -29,10 +32,12 @@ describe('UserProfile', () => {
   it('should be able to click on the favorited rentals button', () => {
     const mockGoToFavRentals = jest.fn();
     const { getByText } = render(
-      <UserProfile
-        userInfo={userInfo}
-        goToFavRentals={mockGoToFavRentals}
-      />
+      <BrowserRouter>
+        <UserProfile
+          userInfo={userInfo}
+          goToFavRentals={mockGoToFavRentals}
+          />
+      </BrowserRouter>
     );
 
     fireEvent.click(getByText('Favorited Rentals'));

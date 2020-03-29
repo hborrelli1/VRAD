@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import './UserProfile.scss';
 import { Link } from 'react-router-dom';
 
+
 const UserProfile = ({ userInfo, goToFavRentals }) => {
 
   const { name, email, purpose, favoriteLocations } = userInfo;

@@ -2,6 +2,7 @@ import React from "react";
 import { render, fireEvent, wait } from "@testing-library/react";
 import LocationContainer from "./LocationContainer";
 import "@testing-library/jest-dom";
+import { BrowserRouter } from 'react-router-dom';
 import {fetchLocations} from "../../ApiCalls/ApiCalls.js";
 jest.mock("../../ApiCalls/ApiCalls.js")
 
@@ -44,15 +45,21 @@ describe("Test", () => {
   it("should display the locations info", async () => {
     const mockFavorite = jest.fn();
     const mockChangeView = jest.fn();
+    const mockIsFavorite = jest.fn();
+
     fetchLocations.mockResolvedValue(response)
     const { getByText,debug} = render(
-      <LocationContainer
-        favorite={mockFavorite}
-        goToListing={mockChangeView}
-        favoriteLocations={favoriteLocations}
-        listings={listingDetails}
+      <BrowserRouter>
 
-      />
+        <LocationContainer
+          favorite={mockFavorite}
+          goToListing={mockChangeView}
+          favoriteLocations={favoriteLocations}
+          listings={listingDetails}
+          isFavorite = {mockIsFavorite}
+
+          />
+      </BrowserRouter>
     );
     await wait(()=> {
       const locationNameEl = getByText("Hip RiNo Party Spot");
