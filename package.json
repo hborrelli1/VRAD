@@ -5,6 +5,7 @@
   "dependencies": {
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "fsevents": "^2.1.2",
     "lint": "^0.7.0",
     "node-sass": "^4.13.1",
     "react": "^16.13.1",
@@ -15,7 +16,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --maxWorkers=10",
     "eject": "react-scripts eject",
     "lint": "eslint"
   },
