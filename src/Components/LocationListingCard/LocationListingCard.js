@@ -57,4 +57,11 @@ const LocationListingCard = ({ currentListing, favorite, isFavorite }) => {
   )
 }
 
+LocationListingCard.propTypes = {
+  favorite: PropTypes.func,
+  isFavorite: PropTypes.func,
+  currentListing: PropTypes.object,
+  areaName: PropTypes.string
+}
+
 export default LocationListingCard;
