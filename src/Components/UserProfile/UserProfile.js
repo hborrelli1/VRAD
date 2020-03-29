@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './UserProfile.scss';
+import { Link } from 'react-router-dom';
 
 const UserProfile = ({ userInfo, goToFavRentals }) => {
 
@@ -17,9 +18,13 @@ const UserProfile = ({ userInfo, goToFavRentals }) => {
       <div className="user-meta">
         <h4>Reason for visiting:</h4>
         <p className="purpose">{purpose}</p>
-        <button
-          onClick={goToFavRentals}
-        >Favorited Rentals <span>{favoriteLocations.length}</span></button>
+        <Link
+          to= {`/areas/favorites/`}
+          >
+          <button
+            onClick={goToFavRentals}
+            >Favorited Rentals <span>{favoriteLocations.length}</span></button>
+        </Link>
       </div>
       <div></div>
     </div>

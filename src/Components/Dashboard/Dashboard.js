@@ -43,6 +43,7 @@ const Dashboard = ({
             );
           }}
         />
+
         <Route
           exact
           path="/areas/:areaName/:id"
@@ -51,7 +52,8 @@ const Dashboard = ({
             return <LocationListingCard currentListing={currentListing} areaName = {areaName} />;
           }}
         />
-        ;
+
+
       </Switch>
     </main>
   );

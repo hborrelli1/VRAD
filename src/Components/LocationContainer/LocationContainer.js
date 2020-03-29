@@ -24,7 +24,7 @@ class LocationContainer extends React.Component {
 
   render() {
     const { listingData } = this.state;
-    const { favorite, goToListing, favoriteLocations,areaName } = this.props;
+    const { favorite, goToListing, favoriteLocations,areaName,listings } = this.props;
     return (
       <section className="location-conatiner">
         {

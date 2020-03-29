@@ -12,12 +12,12 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      isLoggedIn: false,
+      isLoggedIn: true,
       userInfo: {
         name: "",
         email: "",
         purpose: "",
-        favoriteLocations: [44, 2]
+        favoriteLocations: [3, 44]
       },
       areas: [],
       listings:["/api/v1/listings/3", "/api/v1/listings/44"],
@@ -67,6 +67,11 @@ class App extends Component {
   }
 
   goToFavRentals = () => {
+    let favoriteListings = this.state.userInfo.favoriteLocations.map((listing) => {
+      return (`/api/v1/listings/${listing}`)
+    })
+    this.setState({listings:favoriteListings})
+
     console.log("clicked");
   };
 
