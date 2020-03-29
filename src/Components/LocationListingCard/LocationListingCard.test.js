@@ -74,9 +74,8 @@ describe("LocationListingCard Test", () => {
     const addToFavButton = getByText('ADD-TO-FAVORITES');
 
     fireEvent.click(addToFavButton);
-
     expect(mockIsFavorite).toHaveBeenCalledTimes(1);
     expect(mockIsFavorite).toHaveBeenCalledWith(3);
   });
-  
+
 });
