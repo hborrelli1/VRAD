@@ -6,6 +6,8 @@ import Footer from "../Footer/Footer";
 import "./App.scss";
 import { Route, Redirect } from 'react-router-dom';
 import Dashboard from "../Dashboard/Dashboard";
+import { fetchAreas } from "../../ApiCalls/ApiCalls";
+
 
 class App extends Component {
   constructor() {
@@ -25,31 +27,9 @@ class App extends Component {
     };
   }
 
-  componentDidMount = () => {
-
-    fetch('http://localhost:3001/api/v1/areas')
-      .then(res => res.json())
-      .then(areaData => this.getAreaDetails(areaData))
-      .then(areasList => this.setState({ areas: areasList }))
-      .catch(err => console.log(err.message));
-
-  }
-
-  getAreaDetails = (areaData) => {
-    const BASE_URL = 'http://localhost:3001';
-    const promises = areaData.areas.map(area => {
-      const AREA_ENDPOINT = area.details;
-      return fetch(BASE_URL + AREA_ENDPOINT)
-        .then(response => response.json())
-        .then(areaInfo => {
-          return {
-            nickName: area.area,
-            details:area.details,
-            ...areaInfo
-          }
-        })
-    })
-    return Promise.all(promises);
+  componentDidMount = async () => {
+    let areasList = await fetchAreas();
+    this.setState({ areas: areasList });
   }
 
   login = userData => {

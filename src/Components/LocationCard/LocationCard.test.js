@@ -1,8 +1,8 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import LocationCard from './LocationCard';
-import '@testing-library/jest-dom';
 import { BrowserRouter } from 'react-router-dom';
+import '@testing-library/jest-dom';
 
 describe("Test", () => {
   let listingData;
@@ -43,12 +43,11 @@ describe("Test", () => {
       <BrowserRouter>
         <LocationCard
           favorite={mockFavorite}
+          isFavorite={mockIsFavorite}
           key={listingData.listing_id}
           listingData={listingData}
           goToListing={mockChangeView}
           favoriteLocations = {favoriteLocations}
-          isFavorite = {mockIsFavorite}
-
           />
       </BrowserRouter>
     );

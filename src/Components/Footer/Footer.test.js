@@ -10,6 +10,10 @@ it("Should render the component to the page", () => {
   const { getByText } = render(
     <BrowserRouter>
       <Footer />
-    </BrowserRouter>
-  );
+      </BrowserRouter>
+    );
+
+    const footerEl = getByText('Built by:');
+    expect(footerEl).toBeInTheDocument();
+
 });

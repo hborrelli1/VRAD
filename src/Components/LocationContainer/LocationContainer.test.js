@@ -2,9 +2,9 @@ import React from "react";
 import { render, fireEvent, waitFor, wait } from "@testing-library/react";
 import LocationContainer from "./LocationContainer";
 import "@testing-library/jest-dom";
-import { BrowserRouter } from "react-router-dom";
-import { fetchLocations } from "../../ApiCalls/ApiCalls.js";
-jest.mock("../../ApiCalls/ApiCalls.js");
+import {fetchLocations} from "../../ApiCalls/ApiCalls.js";
+import { BrowserRouter } from 'react-router-dom';
+jest.mock("../../ApiCalls/ApiCalls.js")
 
 describe("Test", () => {
   let listingDetails;
@@ -47,10 +47,10 @@ describe("Test", () => {
   it.skip("should display the locations info", async (done) => {
     expect.assertions(1)
     const mockFavorite = jest.fn();
-    const mockChangeView = jest.fn();
     const mockIsFavorite = jest.fn();
-    fetchLocations.mockResolvedValue(response);
-    const { getByText, debug } = render(
+    const mockChangeView = jest.fn();
+    fetchLocations.mockResolvedValue(response)
+    const { getByText,debug} = render(
       <BrowserRouter>
         <LocationContainer
           favorite={mockFavorite}
