@@ -15,19 +15,24 @@ class LocationContainer extends React.Component {
   locationContainerHelper = async (listings) => {
     let data = await fetchLocations(listings);
     this.setState({ listingData: data });
-
   };
 
   componentDidMount() {
     this.locationContainerHelper(this.props.listings);
   }
 
+  componentDidUpdate(prevProps) {
+  if (this.props.areaName === 'favorites') {
+    this.locationContainerHelper(this.props.favoriteLocations);
+  } else if (this.props.areaName !== 'favorites') {
+      this.locationContainerHelper(this.props.listings);
+    }
+}
+
+
   render() {
     const { listingData } = this.state;
     const { favorite, isFavorite, goToListing, favoriteLocations, areaName,listings } = this.props;
-    if(areaName ==='favorites'){
-      this.locationContainerHelper(listings)
-    }
     return (
       <section className="location-conatiner">
         {

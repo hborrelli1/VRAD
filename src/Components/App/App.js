@@ -16,7 +16,7 @@ class App extends Component {
         name: "",
         email: "",
         purpose: "",
-        favoriteLocations: [3, 44]
+        favoriteLocations: ['/api/v1/listings/3', '/api/v1/listings/44']
       },
       areas: [],
       listings:["/api/v1/listings/3", "/api/v1/listings/44"],
@@ -66,12 +66,7 @@ class App extends Component {
   }
 
   goToFavRentals = () => {
-    let favoriteListings = this.state.userInfo.favoriteLocations.map((listing) => {
-      return (`/api/v1/listings/${listing}`)
-    })
-    this.setState({listings:favoriteListings})
-
-    console.log("clicked");
+    let favoriteListings = this.state.userInfo.favoriteLocations;
   };
 
   goToListing = (listingData, view) => {
@@ -82,8 +77,8 @@ class App extends Component {
   favorite = id => {
     const { favoriteLocations } = this.state.userInfo;
     let updatedState;
-    if (favoriteLocations.includes(id)) {
-      let filteredArray = favoriteLocations.filter(location => location !== id);
+    if (favoriteLocations.includes(`/api/v1/listings/${id}`)) {
+      let filteredArray = favoriteLocations.filter(location => location !== `/api/v1/listings/${id}`);
       updatedState = {
         ...this.state.userInfo,
         favoriteLocations: filteredArray
@@ -91,7 +86,7 @@ class App extends Component {
     } else {
       updatedState = {
         ...this.state.userInfo,
-        favoriteLocations: [...favoriteLocations, id]
+        favoriteLocations: [...favoriteLocations, `/api/v1/listings/${id}`]
       };
     }
     this.setState({ userInfo: updatedState });
@@ -99,7 +94,7 @@ class App extends Component {
 
   isFavorite = id => {
     const { favoriteLocations } = this.state.userInfo;
-    if (favoriteLocations.includes(id)) {
+    if (favoriteLocations.includes(`/api/v1/listings/${id}`)) {
       return "favorite";
     } else {
       return "add-to-favorites";
