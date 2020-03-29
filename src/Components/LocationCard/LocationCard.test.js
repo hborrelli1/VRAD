@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import LocationCard from './LocationCard';
+import { BrowserRouter } from 'react-router-dom';
 import '@testing-library/jest-dom';
 
 describe("Test", () => {
@@ -36,15 +37,19 @@ describe("Test", () => {
 
   it('should display the locations info', () => {
     const mockFavorite = jest.fn();
+    const mockIsFavorite = jest.fn();
     const mockChangeView = jest.fn();
     const { getByText } = render(
-      <LocationCard
-        favorite={mockFavorite}
-        key={listingData.listing_id}
-        listingData={listingData}
-        goToListing={mockChangeView}
-        favoriteLocations = {favoriteLocations}
-      />
+      <BrowserRouter>
+        <LocationCard
+          favorite={mockFavorite}
+          isFavorite={mockIsFavorite}
+          key={listingData.listing_id}
+          listingData={listingData}
+          goToListing={mockChangeView}
+          favoriteLocations = {favoriteLocations}
+          />
+      </BrowserRouter>
     );
 
     const locationNameEl = getByText("Hip RiNo Party Spot");
@@ -57,15 +62,19 @@ describe("Test", () => {
 
   it('should be able to change views', () => {
     const mockChangeView = jest.fn();
+    const mockIsFavorite = jest.fn();
     const mockFavorite = jest.fn();
     const { getByText } = render(
-      <LocationCard
-        favorite={mockFavorite}
-        key={listingData.listing_id}
-        listingData={listingData}
-        goToListing={mockChangeView}
-        favoriteLocations = {favoriteLocations}
-      />
+      <BrowserRouter>
+        <LocationCard
+          favorite={mockFavorite}
+          isFavorite={mockIsFavorite}
+          key={listingData.listing_id}
+          listingData={listingData}
+          goToListing={mockChangeView}
+          favoriteLocations = {favoriteLocations}
+          />
+      </BrowserRouter>
     );
     const goToListing = getByText('Go to Listing');
 
@@ -78,14 +87,18 @@ describe("Test", () => {
   it('should be able to favorite locations', () => {
     const mockChangeView = jest.fn();
     const mockFavorite = jest.fn();
+    const mockIsFavorite = jest.fn();
     const { getByText } = render(
-      <LocationCard
-        favorite={mockFavorite}
-        key={listingData.listing_id}
-        listingData={listingData}
-        goToListing={mockChangeView}
-        favoriteLocations = {favoriteLocations}
-      />
+      <BrowserRouter>
+        <LocationCard
+          favorite={mockFavorite}
+          isFavorite={mockIsFavorite}
+          key={listingData.listing_id}
+          listingData={listingData}
+          goToListing={mockChangeView}
+          favoriteLocations = {favoriteLocations}
+          />
+      </BrowserRouter>
     );
     const favoriteButton = getByText('favorite');
 
