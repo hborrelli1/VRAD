@@ -24,7 +24,8 @@ class App extends Component {
       areas: [],
       listings:[],
       currentListing: {},
-      favoriteListingData:[]
+      favoriteListingData:[],
+      isLoading:false
       // currentView: ""
     };
   }
@@ -45,14 +46,18 @@ class App extends Component {
   };
 
   changeView = async (view, destinationURL, areaListings) => {
+    this.setState({isLoading:true})
     let data = await fetchLocations(areaListings);
     this.setState({ listings: data});
+    this.setState({isLoading:false})
   }
 
   goToFavRentals = async() => {
+    this.setState({isLoading:true})
     let favoriteListings = this.state.userInfo.favoriteLocations;
     let data = await fetchLocations(favoriteListings);
     this.setState({ favoriteListingData: data});
+    this.setState({isLoading:false})
 
   };
 
@@ -113,6 +118,7 @@ class App extends Component {
             !this.state.isLoggedIn
               ? <Login login={this.login} />
               : <Dashboard
+                  isLoading = {this.state.isLoading}
                   favoriteListingData = {this.state.favoriteListingData}
                   userInfo={this.state.userInfo}
                   goToFavRentals={this.goToFavRentals}

@@ -17,7 +17,8 @@ const Dashboard = ({
   listings,
   changeView,
   currentListing,
-  favoriteListingData
+  favoriteListingData,
+  isLoading
 }) => {
   const { favoriteLocations } = userInfo;
   return (
@@ -43,6 +44,7 @@ const Dashboard = ({
             return (
               <LocationContainer
                 areaName={areaName}
+                isLoading = {isLoading}
                 goToListing={goToListing}
                 favorite={favorite}
                 isFavorite={isFavorite}
@@ -60,6 +62,7 @@ const Dashboard = ({
             return (
               <LocationContainer
                 areaName={'favorites'}
+                isLoading = {isLoading}
                 goToListing={goToListing}
                 favorite={favorite}
                 isFavorite={isFavorite}

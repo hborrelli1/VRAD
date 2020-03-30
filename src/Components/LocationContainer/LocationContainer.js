@@ -23,6 +23,7 @@ class LocationContainer extends React.Component {
     const { listingData } = this.state;
     const {
       favorite,
+      isLoading,
       isFavorite,
       goToListing,
       favoriteLocations,
@@ -47,7 +48,7 @@ class LocationContainer extends React.Component {
               />
             );
           })
-          : <img src={`${IMG_PATH}NothingToSee.jpg`} />
+          : !isLoading && <img src={`${IMG_PATH}NothingToSee.jpg`} />
         }
       </section>
     );
