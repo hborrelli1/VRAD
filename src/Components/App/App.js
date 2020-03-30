@@ -7,13 +7,14 @@ import "./App.scss";
 import { Route, Redirect } from 'react-router-dom';
 import Dashboard from "../Dashboard/Dashboard";
 import { fetchAreas } from "../../ApiCalls/ApiCalls";
+import { fetchLocations } from "../../ApiCalls/ApiCalls.js";
 
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      isLoggedIn: false,
+      isLoggedIn: true,
       userInfo: {
         name: "",
         email: "",
@@ -21,8 +22,9 @@ class App extends Component {
         favoriteLocations: ['/api/v1/listings/3', '/api/v1/listings/44']
       },
       areas: [],
-      listings:["/api/v1/listings/3", "/api/v1/listings/44"],
+      listings:[],
       currentListing: {},
+      favoriteListingData:[]
       // currentView: ""
     };
   }
@@ -31,6 +33,7 @@ class App extends Component {
     let areasList = await fetchAreas();
     this.setState({ areas: areasList });
   }
+
 
   login = userData => {
     const userState = this.state.userInfo;
@@ -41,12 +44,16 @@ class App extends Component {
     });
   };
 
-  changeView = (view, destinationURL, areaListings) => {
-    this.setState({ currentView: view,listings:areaListings });
+  changeView = async (view, destinationURL, areaListings) => {
+    let data = await fetchLocations(areaListings);
+    this.setState({ listings: data});
   }
 
-  goToFavRentals = () => {
+  goToFavRentals = async() => {
     let favoriteListings = this.state.userInfo.favoriteLocations;
+    let data = await fetchLocations(favoriteListings);
+    this.setState({ favoriteListingData: data});
+
   };
 
   goToListing = (listingData, view) => {
@@ -57,8 +64,11 @@ class App extends Component {
   favorite = id => {
     const { favoriteLocations } = this.state.userInfo;
     let updatedState;
+    let filteredFavoritesData = this.state.favoriteListingData;
     if (favoriteLocations.includes(`/api/v1/listings/${id}`)) {
       let filteredArray = favoriteLocations.filter(location => location !== `/api/v1/listings/${id}`);
+      // Logic to filter favoritedlistingData state and change it.
+      filteredFavoritesData = filteredFavoritesData.filter(favoriteData => favoriteData.listing_id!=id)
       updatedState = {
         ...this.state.userInfo,
         favoriteLocations: filteredArray
@@ -69,7 +79,7 @@ class App extends Component {
         favoriteLocations: [...favoriteLocations, `/api/v1/listings/${id}`]
       };
     }
-    this.setState({ userInfo: updatedState });
+    this.setState({ userInfo: updatedState,favoriteListingData:filteredFavoritesData});
   };
 
   isFavorite = id => {
@@ -103,6 +113,7 @@ class App extends Component {
             !this.state.isLoggedIn
               ? <Login login={this.login} />
               : <Dashboard
+                  favoriteListingData = {this.state.favoriteListingData}
                   userInfo={this.state.userInfo}
                   goToFavRentals={this.goToFavRentals}
                   areas={this.state.areas}

@@ -4,7 +4,7 @@ import './UserProfile.scss';
 import { Link } from 'react-router-dom';
 
 
-const UserProfile = ({ userInfo, goToFavRentals }) => {
+const UserProfile = ({ userInfo, goToFavRentals,pathName,goBack}) => {
 
   const { name, email, purpose, favoriteLocations } = userInfo;
   const greeting = `Select from the following areas to find the perfect location for your ${purpose} trip!`;
@@ -20,7 +20,7 @@ const UserProfile = ({ userInfo, goToFavRentals }) => {
         <h4>Reason for visiting:</h4>
         <p className="purpose">{purpose}</p>
         <Link
-          to= {`/areas/favorites/`}
+          to= {pathName.includes('favorites')?'/' :`/favorites/`}
           >
           <button
             onClick={goToFavRentals}
