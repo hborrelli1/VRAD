@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { BASE_URL } from "../../constants/Constants";
 import LocationCard from "../LocationCard/LocationCard";
-import {fetchLocations} from "../../ApiCalls/ApiCalls.js";
+import { fetchLocations } from "../../ApiCalls/ApiCalls.js";
 
 class LocationContainer extends React.Component {
   constructor() {
@@ -12,7 +12,7 @@ class LocationContainer extends React.Component {
     };
   }
 
-  locationContainerHelper = async (listings) => {
+  locationContainerHelper = async listings => {
     let data = await fetchLocations(listings);
     this.setState({ listingData: data });
   };
@@ -22,24 +22,31 @@ class LocationContainer extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-  if (this.props.areaName === 'favorites') {
-    this.locationContainerHelper(this.props.favoriteLocations);
-  } else if (this.props.areaName !== 'favorites') {
-      this.locationContainerHelper(this.props.listings);
+    if (this.props.areaName === "favorites") {
+      this.locationContainerHelper(this.props.favoriteLocations);
+    } else if (this.props.listings !== prevProps.listings) {
+      if (this.props.areaName !== "favorites"){
+        this.locationContainerHelper(this.props.listings);
+      }
     }
-}
-
+  }
 
   render() {
     const { listingData } = this.state;
-    const { favorite, isFavorite, goToListing, favoriteLocations, areaName,listings } = this.props;
+    const {
+      favorite,
+      isFavorite,
+      goToListing,
+      favoriteLocations,
+      areaName,
+      listings
+    } = this.props;
     return (
       <section className="location-conatiner">
-        {
-          listingData.map(listing => {
+        {listingData.map(listing => {
           return (
             <LocationCard
-              areaName = {areaName}
+              areaName={areaName}
               favorite={favorite}
               isFavorite={isFavorite}
               key={listing.listing_id}
