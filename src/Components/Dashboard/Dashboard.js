@@ -5,6 +5,7 @@ import { Switch, Route } from "react-router-dom";
 import AreaContainer from "../AreaContainer/AreaContainer";
 import LocationContainer from "../LocationContainer/LocationContainer";
 import LocationListingCard from "../LocationListingCard/LocationListingCard";
+import Breadcrumb from "../Breadcrumb/Breadcrumb";
 import './Dashboard.scss';
 
 const Dashboard = ({
@@ -21,7 +22,21 @@ const Dashboard = ({
   const { favoriteLocations } = userInfo;
   return (
     <div className="dashboard">
-      <UserProfile userInfo={userInfo} goToFavRentals={goToFavRentals} />
+      <Route
+        path = "/"
+        render={({location})=> {
+          return(
+            <Breadcrumb
+              path = {location.pathname}
+            />
+
+          )
+
+        }}
+        />
+
+
+        <UserProfile userInfo={userInfo} goToFavRentals={goToFavRentals} />
 
       <Switch>
         <Route

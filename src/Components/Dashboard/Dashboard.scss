@@ -1,4 +1,12 @@
 .dashboard {
   display: flex;
+  flex-flow: wrap;
+  nav{
+    width:100%;
+  }
+  ul {
+    display: flex;
+  }
+
   margin-top:20px;
 }
