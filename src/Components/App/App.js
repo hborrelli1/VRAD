@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Login from "../Login/Login.js";
 import Header from "../Header/Header.js";
-
 import Footer from "../Footer/Footer";
 import "./App.scss";
 import { Route, Redirect } from 'react-router-dom';
