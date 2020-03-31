@@ -7,7 +7,18 @@ footer {
   display: flex;
   flex-flow: column;
 
-  span {
-    display:block;
+  * {
+    color:#616161;
   }
+
+  p {
+    letter-spacing: 1px;
+    font-size:14px;
+    font-weight:500;
+
+    span {
+      display:block;
+    }
+  }
+
 }

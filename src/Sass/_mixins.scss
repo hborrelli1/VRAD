@@ -3,7 +3,7 @@
   font-family: $font;
   text-transform: uppercase;
   outline: 0;
-  background: $button-background;
+  background: $primary-purple;
   width: 100%;
   border: 0;
   padding: 15px;
@@ -12,21 +12,25 @@
   -webkit-transition: all 0.3 ease;
   transition: all 0.3 ease;
   cursor: pointer;
+  transition: all .2s;
 
   &:hover,
   :active,
   :focus {
-    background: $highlight;
+    // background: $highlight;
+    transition: all .2s;
+    background: $button-background-hover;
   }
 
   &:disabled {
     background: grey;
     color:lightgrey;
+    cursor:no-drop;
   }
 }
 @mixin form() {
   margin: 4rem auto 100px;
-  padding: 45px;
+  padding: 30px;
   text-align: center;
   box-shadow: $box-shadow;
   position: relative;
@@ -45,4 +49,8 @@
   padding: 15px;
   box-sizing: border-box;
   font-size: $font-size-medium;
+}
+
+@mixin colorPurple() {
+  color:$primary-purple;
 }
