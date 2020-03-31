@@ -1,10 +1,13 @@
 .user-profile {
   border:1px solid #b3b3b3;
   border-radius:4px;
-  width:23%;
+  max-width:23%;
+  width:100%;
   text-align:left;
   overflow:hidden;
   margin-right:2%;
+  margin-bottom:75px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 
   .welcome-header {
     background-color:#e2e2e2;

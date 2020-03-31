@@ -9,8 +9,67 @@
 .App {
   display:flex;
   flex-flow:column;
-  justify-content: space-between;
+  // justify-content: space-between;
   padding:20px;
   min-height:100vh;
   background-color:#eee;
+  width:100%;
+  overflow:hidden;
+}
+@media screen and (max-width:800px) {
+  .user-profile {
+    width:100% !important;
+    max-width:100% !important;
+    margin-right:0px !important;
+  }
+
+  .area-container,
+  .location-conatiner {
+    width:100% !important;
+
+    .card,
+    .area-card {
+      width:100% !important;
+      margin-right:0px !important;
+    }
+  }
+
+  .location-listing-card {
+    .location-images {
+      img {
+        width:100% !important;
+
+        &:nth-child(2) {
+          border-left:0 !important;
+          border-right:0 !important;
+          border-top:2px solid #fff;
+          border-bottom:2px solid #fff;
+        }
+      }
+    }
+
+    .location-info {
+      padding-right:0px !important;
+    }
+
+    .location-info,
+    .header,
+    .super-host,
+    .fav-button {
+      width:100% !important;
+    }
+
+    .super-host {
+      margin-top:20px;
+    }
+
+    .meta {
+      margin-top:30px;
+
+      .info,
+      .features {
+        width:100% !important;
+      }
+    }
+  }
 }
