@@ -20,10 +20,15 @@
       font-size:16px;
       line-height:28px;
     }
+
   }
 
-  button {
-    margin-bottom:0px;
+  a {
+    display: inline-block;
+    margin:20px 0px;
+    width: unset;
+    align-self: flex-start;
+    margin-left: 20px;
   }
 
   &:nth-child(2n+2) {
