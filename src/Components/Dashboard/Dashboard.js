@@ -31,7 +31,7 @@ const Dashboard = ({
 
       <div className="content-wrapper">
         <Route
-          render = {({location, history}) =>
+          render = {({location}) =>
             <UserProfile userInfo={userInfo} goToFavRentals={goToFavRentals} pathName = {location.pathname} />
           }
         />
@@ -96,6 +96,21 @@ const Dashboard = ({
       </div>
     </div>
   );
+};
+
+Dashboard.propTypes = {
+  favorite: PropTypes.func,
+  favoriteLocations: PropTypes.array,
+  goToListing: PropTypes.func,
+  listings: PropTypes.array,
+  userInfo:PropTypes.object,
+  areas:PropTypes.array,
+  goToFavRentals:PropTypes.func,
+  isFavorite:PropTypes.func,
+  changeView:PropTypes.func,
+  currentListing:PropTypes.object,
+  favoriteListingData:PropTypes.array,
+  isLoading:PropTypes.bool
 };
 
 export default Dashboard;

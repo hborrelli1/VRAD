@@ -5,7 +5,6 @@ import { BrowserRouter } from 'react-router-dom';
 
 describe("LocationListingCard Test", () => {
   let currentListing;
-  let favoriteLocations
 
   beforeEach(() => {
     currentListing = {
@@ -32,7 +31,6 @@ describe("LocationListingCard Test", () => {
       "area": "rino",
       "db_connect": 834470
     }
-    favoriteLocations = [3];
   })
 
   it("should be able to render location info to DOM", () => {
@@ -48,13 +46,11 @@ describe("LocationListingCard Test", () => {
     );
 
     const locationNameEl = getByText('Hip RiNo Party Spot');
-    const locationAddressEl = getByText('Address: 2250 Lawrence St, 80205');
-    const priceEl = getByText('Cost Per Night: $420');
+    const locationAddressEl = getByText('2250 Lawrence St, 80205');
     const featureEl = getByText('hot tub');
 
     expect(locationNameEl).toBeInTheDocument();
     expect(locationAddressEl).toBeInTheDocument();
-    expect(priceEl).toBeInTheDocument();
     expect(featureEl).toBeInTheDocument();
   });
 

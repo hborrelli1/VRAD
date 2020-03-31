@@ -1,5 +1,5 @@
 import React from "react";
-import { render, fireEvent, wait } from "@testing-library/react";
+import { render, wait } from "@testing-library/react";
 import LocationContainer from "./LocationContainer";
 import "@testing-library/jest-dom";
 import {fetchLocations} from "../../ApiCalls/ApiCalls.js";
@@ -7,11 +7,9 @@ import { BrowserRouter } from 'react-router-dom';
 jest.mock("../../ApiCalls/ApiCalls.js")
 
 describe("Test", () => {
-  let listingDetails;
   let favoriteLocations;
   let response;
   beforeEach(() => {
-    listingDetails = ['/api/v1/listings/3','/api/v1/listings/44']
     favoriteLocations = [3];
 
     response =
@@ -47,22 +45,19 @@ describe("Test", () => {
     const mockIsFavorite = jest.fn();
     const mockChangeView = jest.fn();
     fetchLocations.mockResolvedValue(response)
-    const { getByText,debug} = render(
+    const { getByText} = render(
       <BrowserRouter>
         <LocationContainer
           favorite={mockFavorite}
           goToListing={mockChangeView}
           favoriteLocations={favoriteLocations}
-          listings={listingDetails}
+          listings={response}
           isFavorite={mockIsFavorite}
         />
       </BrowserRouter>
     );
     await wait(()=> expect(getByText("Hip RiNo Party Spot")).toBeInTheDocument())
-    // const locationAddressEl = getByText("2250 Lawrence St");
-    //
-    // expect(locationNameEl).toBeInTheDocument();
-    // expect(locationAddressEl).toBeInTheDocument();
+    await wait(()=> expect(getByText("2250 Lawrence St")).toBeInTheDocument())
 
   });
 });

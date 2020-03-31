@@ -1,25 +1,21 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { BASE_URL } from "../../constants/Constants";
 import { IMG_PATH } from "../../constants/Constants";
 import { Link } from 'react-router-dom';
 
 const LocationCard = props => {
   const {
     address,
-    area,
-    area_id,
     name,
-    listing_id,
-    details
+    listing_id
   } = props.listingData;
-  const { favoriteLocations, isFavorite, areaName } = props;
+  const { isFavorite, areaName } = props;
   const urlName = name.toLowerCase().split(' ').join('-');
 
   return (
     <article className="card">
       <div className="img-container">
-        <img src={`${IMG_PATH + listing_id}_a.jpg`} />
+        <img src={`${IMG_PATH + listing_id}_a.jpg`} alt = {name+'Image'}/>
       </div>
       <div className="info-container">
         <h2 className="card-heading" aria-label={name}>
@@ -29,13 +25,13 @@ const LocationCard = props => {
         <div className="button-wrap">
           <button
             className={`${isFavorite(listing_id)}`}
-            onClick={event => props.favorite(listing_id)}
+            onClick={() => props.favorite(listing_id)}
             >
             {`${isFavorite(listing_id)}`}
           </button>
           <Link
             to={`/areas/${areaName}/${urlName}`}
-            onClick={event => props.goToListing(props.listingData, "LocationListingCard")}
+            onClick={() => props.goToListing(props.listingData, "LocationListingCard")}
             >
             <button>Go to Listing</button>
           </Link>
@@ -52,8 +48,13 @@ LocationCard.propTypes = {
   listingData: PropTypes.shape({
     address: PropTypes.object,
     area_id: PropTypes.number,
-    details: PropTypes.object
-  })
+    details: PropTypes.object,
+    name:PropTypes.string,
+    listing_id:PropTypes.number
+  }),
+  isFavorite:PropTypes.func,
+  areaName:PropTypes.string
+
 };
 
 export default LocationCard;

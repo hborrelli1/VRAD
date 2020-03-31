@@ -19,7 +19,8 @@ describe('UserProfile', () => {
   it('Should render the component to the page', () => {
     const { getByText } = render(
       <BrowserRouter>
-        <UserProfile userInfo={userInfo} />
+        <UserProfile userInfo={userInfo}
+        pathName =   {'areas/favorites'} />
       </BrowserRouter>
     );
 
@@ -35,6 +36,7 @@ describe('UserProfile', () => {
       <BrowserRouter>
         <UserProfile
           userInfo={userInfo}
+          pathName =   {'areas/favorites'}
           goToFavRentals={mockGoToFavRentals}
           />
       </BrowserRouter>
