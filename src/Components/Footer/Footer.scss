@@ -6,8 +6,20 @@ footer {
   padding-top:20px;
   display: flex;
   flex-flow: column;
+  margin-top:auto;
 
-  span {
-    display:block;
+  * {
+    color:#616161;
   }
+
+  p {
+    letter-spacing: 1px;
+    font-size:14px;
+    font-weight:500;
+
+    span {
+      display:block;
+    }
+  }
+
 }

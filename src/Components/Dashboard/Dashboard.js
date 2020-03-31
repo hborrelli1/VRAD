@@ -26,81 +26,74 @@ const Dashboard = ({
     <div className="dashboard">
       <Route
         path = "/"
-        render={({location})=> {
-          return(
-            <Breadcrumb
-              key = {Date.now()}
-              path = {location.pathname}
-            />
-
-          )
-
-        }}
+        render={({location}) => <Breadcrumb path = {location.pathname} /> }
         />
 
-      <Route
-        render = {({location}) =>
-          <UserProfile userInfo={userInfo} goToFavRentals={goToFavRentals} pathName = {location.pathname} />
-        }
-      />
+      <div className="content-wrapper">
+        <Route
+          render = {({location, history}) =>
+            <UserProfile userInfo={userInfo} goToFavRentals={goToFavRentals} pathName = {location.pathname} />
+          }
+        />
 
-      <Switch>
+        <Switch>
+          <Route
+            exact
+            path="/areas/"
+            render={() => <AreaContainer areas={areas} changeView={changeView} />}
+          />
         <Route
           exact
-          path="/areas/"
-          render={() => <AreaContainer areas={areas} changeView={changeView} />}
-        />
-      <Route
-        exact
-        path="/favorites"
-        render={() => {
+          path="/favorites"
+          render={() => {
 
-          return (
-            <LocationContainer
-              areaName={'favorites'}
-              isLoading = {isLoading}
-              goToListing={goToListing}
-              favorite={favorite}
-              isFavorite={isFavorite}
-              listings={favoriteListingData}
-              favoriteLocations={favoriteLocations}
-              />
-          );
-        }}
-        />
-
-        <Route
-          exact
-          path="/areas/:id"
-          render={({ match }) => {
-            const areaName = match.params.id;
             return (
               <LocationContainer
-                areaName={areaName}
+                areaName={'favorites'}
                 isLoading = {isLoading}
                 goToListing={goToListing}
                 favorite={favorite}
                 isFavorite={isFavorite}
-                listings={listings}
+                listings={favoriteListingData}
                 favoriteLocations={favoriteLocations}
-              />
+                />
             );
           }}
-        />
+          />
 
-        <Route
-          exact
-          path="/areas/:areaName/:id"
-          render={({ match }) => {
-            const areaName = match.params.id;
-            return <LocationListingCard
-              favorite={favorite}
-              isFavorite={isFavorite}
-              currentListing={currentListing}
-              areaName={areaName}
-            />}}
-        />
-      </Switch>
+          <Route
+            exact
+            path="/areas/:id"
+            render={({ match }) => {
+              const areaName = match.params.id;
+              return (
+                <LocationContainer
+                  areaName={areaName}
+                  isLoading = {isLoading}
+                  goToListing={goToListing}
+                  favorite={favorite}
+                  isFavorite={isFavorite}
+                  listings={listings}
+                  favoriteLocations={favoriteLocations}
+                />
+              );
+            }}
+          />
+
+          <Route
+            exact
+            path="/areas/:areaName/:id"
+            render={({ match }) => {
+              const areaName = match.params.id;
+              return <LocationListingCard
+                favorite={favorite}
+                isFavorite={isFavorite}
+                currentListing={currentListing}
+                areaName={areaName}
+              />}}
+          />
+        </Switch>
+      </div>
     </div>
   );
 };
