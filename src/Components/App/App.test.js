@@ -6,14 +6,10 @@ import {fetchLocations,fetchAreas } from "../../ApiCalls/ApiCalls.js";
 jest.mock("../../ApiCalls/ApiCalls.js")
 
 describe("APP", () => {
-  let listingDetails;
-  let favoriteLocations;
   let locationResponse;
   let areaResponse;
 
   beforeEach(()=>{
-    listingDetails = ['/api/v1/listings/3','/api/v1/listings/44']
-    favoriteLocations = [3];
     locationResponse =
         [{
             "listing_id": 3,
@@ -59,11 +55,9 @@ describe("APP", () => {
   test("Should call fetchFunctions", async () => {
     fetchLocations.mockResolvedValue(locationResponse)
     fetchAreas.mockResolvedValue(areaResponse)
-    const { getByText, getByLabelText, getByPlaceholderText, debug } = render(
+    const { getByText, getByLabelText, getByPlaceholderText } = render(
       <BrowserRouter>
-        <App
-
-        />
+        <App/>
       </BrowserRouter>
     );
     await wait(() =>
@@ -87,7 +81,7 @@ describe("APP", () => {
   test("Should change to areas view", async () => {
     fetchLocations.mockResolvedValue(locationResponse)
     fetchAreas.mockResolvedValue(areaResponse)
-    const { getByText, getByLabelText, getByPlaceholderText, debug } = render(
+    const { getByText, getByLabelText, getByPlaceholderText } = render(
       <BrowserRouter>
         <App
 
@@ -108,15 +102,17 @@ describe("APP", () => {
       fireEvent.click(getByText("Login"))
     });
 
-    const areaEl1 = await wait(() => expect(getByText('River North - (RiNo)'))).toBeInTheDocument;
-    const areaEl2 = await wait(() => expect(getByText('View 3 Listings in RiNo'))).toBeInTheDocument;
-    const areaEl3 = await wait(() => expect(getByText('Park Hill'))).toBeInTheDocument;
+    await wait(() => expect(getByText('River North - (RiNo)'))).toBeInTheDocument;
+    await wait(() => expect(getByText('View 3 Listings in RiNo'))).toBeInTheDocument;
+    await wait(() => expect(getByText('Park Hill'))).toBeInTheDocument;
     expect(fetchAreas).toHaveBeenCalled()
   });
+
+
   test("Should change to locations view", async () => {
     fetchLocations.mockResolvedValue(locationResponse)
     fetchAreas.mockResolvedValue(areaResponse)
-    const { getByText, getByLabelText, getByPlaceholderText, debug } = render(
+    const { getByText, getByLabelText, getByPlaceholderText } = render(
       <BrowserRouter>
         <App
 
@@ -137,14 +133,44 @@ describe("APP", () => {
       fireEvent.click(getByText("Login"))
     });
 
-
-
-    const areaEl1 = await wait(() => expect(getByText('River North - (RiNo)'))).toBeInTheDocument;
-    const areaEl2 = await wait(() => expect(getByText('View 3 Listings in RiNo'))).toBeInTheDocument;
-    const areaEl3 = await wait(() => expect(getByText('Park Hill'))).toBeInTheDocument;
+    await wait(() => expect(getByText('River North - (RiNo)'))).toBeInTheDocument;
+    await wait(() => expect(getByText('View 3 Listings in RiNo'))).toBeInTheDocument;
+    await wait(() => expect(getByText('Park Hill'))).toBeInTheDocument;
     await wait(() => fireEvent.click(getByText("View 3 Listings in RiNo")));
-
     expect(getByText("Hip RiNo Party Spot")).toBeInTheDocument();
+  });
+
+  test("Should change to favorites", async () => {
+    fetchLocations.mockResolvedValue(locationResponse)
+    fetchAreas.mockResolvedValue(areaResponse)
+    const { getByText, getByLabelText, getByPlaceholderText } = render(
+      <BrowserRouter>
+        <App
+
+        />
+      </BrowserRouter>
+    );
+    await wait(() =>
+    {
+      fireEvent.change(getByPlaceholderText("User Name"), {
+        target: { value: "fakeUser" }
+      })
+      fireEvent.change(getByPlaceholderText("Email@provider.com"), {
+        target: { value: "fakeUser@gmail.com" }
+      })
+      fireEvent.change(getByLabelText("purpose of travel"), {
+        target: { value: "buisness" }
+      })
+      fireEvent.click(getByText("Login"))
+    });
+
+    await wait(() => expect(getByText('River North - (RiNo)'))).toBeInTheDocument;
+    await wait(() => expect(getByText('View 3 Listings in RiNo'))).toBeInTheDocument;
+    await wait(() => expect(getByText('Park Hill'))).toBeInTheDocument;
+    await wait(() => fireEvent.click(getByText('Favorited Rentals')))
+    await wait(() => expect(getByText('favorites'))).toBeInTheDocument;
+    await wait(() => expect(getByText('Hip RiNo Party Spot'))).toBeInTheDocument;
+
   });
 
 })

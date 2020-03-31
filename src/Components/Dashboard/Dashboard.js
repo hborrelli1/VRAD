@@ -31,7 +31,7 @@ const Dashboard = ({
 
       <div className="content-wrapper">
         <Route
-          render = {({location, history}) =>
+          render = {({location}) =>
             <UserProfile userInfo={userInfo} goToFavRentals={goToFavRentals} pathName = {location.pathname} />
           }
         />

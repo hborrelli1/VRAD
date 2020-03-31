@@ -8,13 +8,13 @@ const Footer = () => {
         Built by:
         <span>
           Erik Raith |{" "}
-          <a href="https://github.com/ERaith" target="_blank">
+          <a href="https://github.com/ERaith" target="_blank" rel = "noopener noreferrer">
             @github/ERaith
           </a>
         </span>
         <span>
           Harry Borrelli |{" "}
-          <a href="https://github.com/hborrelli1" target="_blank">
+          <a href="https://github.com/hborrelli1" target="_blank" rel = "noopener noreferrer">
             @github/hborrelli1
           </a>
         </span>
