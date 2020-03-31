@@ -13,7 +13,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      isLoggedIn: true,
+      isLoggedIn: false,
       userInfo: {
         name: "",
         email: "",
@@ -83,7 +83,7 @@ class App extends Component {
 
   toggleLogin = (blankUser) => {
     this.setState({ ...blankUser })
-    return <Redirect to = "/"/>
+    return <Redirect to = "/login"/>
   }
 
   render() {
@@ -92,29 +92,30 @@ class App extends Component {
     return (
 
       <main className="App">
-        <Redirect to = "/"/>
+
+        {!this.state.isLoggedIn && <Redirect to = "/login"/>}
+
         <Header
           isLoggedIn={this.state.isLoggedIn}
           toggleLogin={this.toggleLogin}
         />
+      <Route path="/areas">
+          <Dashboard
+            userInfo={this.state.userInfo}
+            goToFavRentals={this.goToFavRentals}
+            areas={this.state.areas}
+            changeView = {this.changeView}
+            goToListing = {this.goToListing}
+            favorite = {this.favorite}
+            isFavorite = {this.isFavorite}
+            listings = {this.state.listings}
+            currentListing={this.state.currentListing}
+            />
 
-        <Route path="/">
-          {
-            !this.state.isLoggedIn
-              ? <Login login={this.login} />
-              : <Dashboard
-                  userInfo={this.state.userInfo}
-                  goToFavRentals={this.goToFavRentals}
-                  areas={this.state.areas}
-                  changeView = {this.changeView}
-                  goToListing = {this.goToListing}
-                  favorite = {this.favorite}
-                  isFavorite = {this.isFavorite}
-                  listings = {this.state.listings}
-                  currentListing={this.state.currentListing}
-                />
-          }
-        </Route>
+      </Route>
+      <Route path="/login" >
+        <Login login={this.login} />
+      </Route>
 
         <Footer />
       </main>

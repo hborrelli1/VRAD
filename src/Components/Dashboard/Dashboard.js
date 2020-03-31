@@ -23,7 +23,7 @@ const Dashboard = ({
   return (
     <div className="dashboard">
       <Route
-        path = "/"
+        path = "/areas"
         render={({location})=> {
           return(
             <Breadcrumb
@@ -41,7 +41,7 @@ const Dashboard = ({
       <Switch>
         <Route
           exact
-          path="/"
+          path="/areas/"
           render={() => <AreaContainer areas={areas} changeView={changeView} />}
         />
 
