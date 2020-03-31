@@ -1,13 +1,16 @@
 .user-profile {
-  border:1px solid #979797;
+  border:1px solid #b3b3b3;
   border-radius:4px;
-  width:23%;
+  max-width:23%;
+  width:100%;
   text-align:left;
   overflow:hidden;
   margin-right:2%;
+  margin-bottom:75px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 
   .welcome-header {
-    background-color:#f4f4f4;
+    background-color:#e2e2e2;
     padding:30px 20px;
 
     h3 {
@@ -28,7 +31,7 @@
   }
 
   .user-meta {
-    padding:30px 20px;
+    padding:70px 20px;
 
     h4 {
       margin-bottom:0px;
@@ -45,19 +48,22 @@
       color:#fff;
     }
 
-    button {
-      display: block;
-      padding:10px 20px;
-      background-color:#979797;
-      color:#fff;
-      text-transform:uppercase;
+    a {
+      text-decoration:none;
+      button {
+        display: block;
+        padding:10px 20px;
+        // background-color:#979797;
+        color:#fff;
+        text-transform:uppercase;
 
-      span {
-        margin-left:10px;
-      }
+        span {
+          margin-left:10px;
+        }
 
-      &:hover {
-        cursor:pointer;
+        &:hover {
+          cursor:pointer;
+        }
       }
     }
   }

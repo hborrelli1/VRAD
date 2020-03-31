@@ -1,0 +1,91 @@
+.location-listing-card {
+  width:75%;
+  margin-bottom:75px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  border:1px solid #b3b3b3;
+  border-radius:4px;
+  overflow:hidden;
+
+  .location-images {
+    display:flex;
+    flex-flow:wrap;
+
+    img {
+      width:33.3%;
+
+      &:nth-child(2) {
+        border-left:2px solid #fff;
+        border-right:2px solid #fff;
+      }
+    }
+  }
+
+  .listing-details {
+    display:flex;
+    flex-flow:wrap;
+    padding:30px;
+
+    .location-info {
+      width:75%;
+      margin-bottom:30px;
+      display: flex;
+      justify-content: space-between;
+      padding-right:50px;
+      flex-flow:wrap;
+
+      h3 {
+        font-size:34px;
+        margin-bottom:10px;
+      }
+
+      .area {
+        margin-bottom:10px;
+        font-size:18px;
+        font-weight:600;
+        color:#979797;
+        text-transform:uppercase;
+      }
+
+      .super-host {
+        font-size:28px;
+        font-weight:600;
+        letter-spacing:1px;
+        color: purple;
+      }
+    }
+
+    .fav-button {
+      width:25%;
+    }
+
+    .meta {
+      width:100%;
+      display: flex;
+      flex-flow:wrap;
+      justify-content: space-between;
+
+      .info,
+      .features {
+        width:50%;
+      }
+
+
+      p {
+        margin-bottom:10px;
+        span {
+          font-weight:700;
+          font-size:18px;
+        }
+      }
+
+      ul {
+        padding-left:20px;
+        display: block;
+
+        li {
+          margin-bottom:5px;
+        }
+      }
+    }
+  }
+}

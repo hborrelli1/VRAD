@@ -4,9 +4,12 @@ $font-size-large: 2rem;
 $font-size-medium: 1.5rem;
 $font-size-small: 1rem;
 
+$primary-purple: #ab49d4;
 $highlight: rgba(216, 17, 89, 1);
 $primary-background: #121212;
 $component-background: #2F4F4F;
-$button-background:darkorchid;
+// $button-background:darkorchid;
+$button-background:#ab49d4;
+$button-background-hover:#9038b5;
 $box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 $input-background:#FAF0E6;

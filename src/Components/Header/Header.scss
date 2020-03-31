@@ -5,17 +5,36 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-height:4.5rem;
+  height:70px;
 
   .logo {
     font-size:38px;
     font-weight:bold;
-    color:#979797;
+    // @include colorPurple();
+    // color:$primary-purple;
+    color:#ab49d4;
   }
 
-  button {
-    display: inline-flex;
-    align-self: flex-start;
-    width:unset;
+  a {
+    background-color: #979797;
+    padding: 10px 30px;
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 500;
+    box-shadow: inset 0 0 3px 3px #0000002b;
+    border-radius: 4px;
+    transition:all .2s;
+
+    &:hover {
+      box-shadow: none;
+      transition:all .2s;
+    }
   }
+  // button {
+  //   display: inline-flex;
+  //   align-self: flex-start;
+  //   width:unset;
+  // }
 }
