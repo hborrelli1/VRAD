@@ -39,8 +39,8 @@ const Breadcrumb = props => {
     let breadCrumbsLinks = breadCrumbs.paths.map(route => {
       return {
         routeHTML: (
-          <li>
-            <Link key ={route.link} to={route.link}>{route.linkText}</Link>
+          <li key ={route.link}>
+            <Link  to={route.link}>{route.linkText}</Link>
           </li>
         ),
         endrouteHTML: <li key= "s">{route.linkText}</li>

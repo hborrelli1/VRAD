@@ -108,7 +108,7 @@ Dashboard.propTypes = {
   goToFavRentals:PropTypes.func,
   isFavorite:PropTypes.func,
   changeView:PropTypes.func,
-  currentListing:PropTypes.array,
+  currentListing:PropTypes.object,
   favoriteListingData:PropTypes.array,
   isLoading:PropTypes.bool
 };

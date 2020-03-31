@@ -50,7 +50,7 @@ LocationCard.propTypes = {
     area_id: PropTypes.number,
     details: PropTypes.object,
     name:PropTypes.string,
-    listing_id:PropTypes.string
+    listing_id:PropTypes.number
   }),
   isFavorite:PropTypes.func,
   areaName:PropTypes.string
