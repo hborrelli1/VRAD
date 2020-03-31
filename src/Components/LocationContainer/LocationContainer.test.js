@@ -51,9 +51,9 @@ describe("Test", () => {
       <BrowserRouter>
         <LocationContainer
           favorite={mockFavorite}
-          goToListing={mockChangeView}
+          goToListing={mqqockChangeView}
           favoriteLocations={favoriteLocations}
-          listings={listingDetails}
+          listings={response}
           isFavorite={mockIsFavorite}
         />
       </BrowserRouter>

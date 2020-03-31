@@ -7,7 +7,7 @@ import { BrowserRouter } from 'react-router-dom';
 test('renders learn react link', () => {
   const { getByText } = render(
     <BrowserRouter>
-      <Breadcrumb />
+      <Breadcrumb path = "/areas/river-north"/>
     </BrowserRouter>
   );
 });

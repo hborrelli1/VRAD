@@ -49,7 +49,6 @@ class Login extends Component {
   };
 
   handleSubmit = event => {
-    console.log(event);
     if (this.validateForm(this.state.errors)) {
       const { login } = this.props;
       const { name, email, purpose } = this.state;
