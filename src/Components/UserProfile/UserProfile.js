@@ -10,9 +10,9 @@ const UserProfile = ({ userInfo, goToFavRentals,pathName,goBack}) => {
   const greeting = `Select from the following areas to find the perfect location for your ${purpose} trip!`;
   const favoritePathHelper = () => {
       if(pathName.includes('areas/favorites')){
-        return '/favorites/'
+        return '/favorites'
       } else if(pathName.includes('favorites')){
-        return '/'
+        return '/areas'
       } else {
         return '/favorites'
       }
