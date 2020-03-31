@@ -8,7 +8,15 @@ const UserProfile = ({ userInfo, goToFavRentals,pathName,goBack}) => {
 
   const { name, email, purpose, favoriteLocations } = userInfo;
   const greeting = `Select from the following areas to find the perfect location for your ${purpose} trip!`;
-
+  const favoritePathHelper = () => {
+      if(pathName.includes('areas/favorites')){
+        return '/favorites/'
+      } else if(pathName.includes('favorites')){
+        return '/'
+      } else {
+        return '/favorites'
+      }
+  }
   return (
     <div className="user-profile">
       <div className="welcome-header">
@@ -20,7 +28,7 @@ const UserProfile = ({ userInfo, goToFavRentals,pathName,goBack}) => {
         <h4>Reason for visiting:</h4>
         <p className="purpose">{purpose}</p>
         <Link
-          to= {pathName.includes('favorites')?'/' :`/favorites/`}
+          to= {favoritePathHelper()}
           >
           <button
             onClick={goToFavRentals}

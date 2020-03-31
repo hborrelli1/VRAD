@@ -13,11 +13,15 @@ class LocationContainer extends React.Component {
     };
   }
 
-    componentDidUpdate = (prevState) => {
-      if(this.props.listings !== prevState.listings){
-        this.setState({listingData:this.props.listings})
-      }
+  componentDidMount = () => {
+    this.setState({ listingData: this.props.listings });
+  };
+
+  componentDidUpdate = prevState => {
+    if (this.props.listings !== prevState.listings) {
+      this.setState({ listingData: this.props.listings });
     }
+  };
 
   render() {
     const { listingData } = this.state;
@@ -31,25 +35,24 @@ class LocationContainer extends React.Component {
       listings
     } = this.props;
     return (
-
-
       <section className="location-conatiner">
-        {listingData.length
-          ?listingData.map(listing => {
-            return (
-              <LocationCard
-                areaName={areaName}
-                favorite={favorite}
-                isFavorite={isFavorite}
-                key={listing.listing_id}
-                listingData={listing}
-                goToListing={goToListing}
-                favoriteLocations={favoriteLocations}
-              />
-            );
-          })
-          : !isLoading && <img src={`${IMG_PATH}NothingToSee.jpg`} />
-        }
+        {listingData.length !== 0
+          ? listingData.map(listing => {
+              return (
+                <LocationCard
+                  areaName={areaName}
+                  favorite={favorite}
+                  isFavorite={isFavorite}
+                  key={listing.listing_id}
+                  listingData={listing}
+                  goToListing={goToListing}
+                  favoriteLocations={favoriteLocations}
+                />
+              );
+            })
+          : listingData.length === 0 && (
+              <img src={`${IMG_PATH}NothingToSee.jpg`} />
+            )}
       </section>
     );
   }
