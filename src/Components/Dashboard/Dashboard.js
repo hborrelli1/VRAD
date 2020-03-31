@@ -5,6 +5,7 @@ import { Switch, Route } from "react-router-dom";
 import AreaContainer from "../AreaContainer/AreaContainer";
 import LocationContainer from "../LocationContainer/LocationContainer";
 import LocationListingCard from "../LocationListingCard/LocationListingCard";
+import Breadcrumb from "../Breadcrumb/Breadcrumb";
 import './Dashboard.scss';
 
 const Dashboard = ({
@@ -24,16 +25,47 @@ const Dashboard = ({
   return (
     <div className="dashboard">
       <Route
+        path = "/"
+        render={({location})=> {
+          return(
+            <Breadcrumb
+              path = {location.pathname}
+            />
+
+          )
+
+        }}
+        />
+
+      <Route
         render = {({location, history}) =>
-          <UserProfile userInfo={userInfo} goToFavRentals={goToFavRentals} goBack = {history.goBack} pathName = {location.pathname} />
+          <UserProfile userInfo={userInfo} goToFavRentals={goToFavRentals} pathName = {location.pathname} />
         }
       />
 
       <Switch>
         <Route
           exact
-          path="/"
+          path="/areas/"
           render={() => <AreaContainer areas={areas} changeView={changeView} />}
+        />
+      <Route
+        exact
+        path="/favorites"
+        render={() => {
+
+          return (
+            <LocationContainer
+              areaName={'favorites'}
+              isLoading = {isLoading}
+              goToListing={goToListing}
+              favorite={favorite}
+              isFavorite={isFavorite}
+              listings={favoriteListingData}
+              favoriteLocations={favoriteLocations}
+              />
+          );
+        }}
         />
 
         <Route
@@ -49,24 +81,6 @@ const Dashboard = ({
                 favorite={favorite}
                 isFavorite={isFavorite}
                 listings={listings}
-                favoriteLocations={favoriteLocations}
-              />
-            );
-          }}
-        />
-        <Route
-          exact
-          path="/favorites"
-          render={() => {
-
-            return (
-              <LocationContainer
-                areaName={'favorites'}
-                isLoading = {isLoading}
-                goToListing={goToListing}
-                favorite={favorite}
-                isFavorite={isFavorite}
-                listings={favoriteListingData}
                 favoriteLocations={favoriteLocations}
               />
             );

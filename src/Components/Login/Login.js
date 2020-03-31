@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 const validEmailRegex = RegExp(
   // eslint-disable-next-line
@@ -48,7 +49,7 @@ class Login extends Component {
   };
 
   handleSubmit = event => {
-    event.preventDefault();
+    console.log(event);
     if (this.validateForm(this.state.errors)) {
       const { login } = this.props;
       const { name, email, purpose } = this.state;
@@ -103,7 +104,7 @@ class Login extends Component {
         <div className="input-wrapper">
           <select
             name="purpose"
-            aria-label = "purpose of travel"
+            aria-label="purpose of travel"
             value={purpose}
             onChange={event => this.handleChange(event)}
           >
@@ -113,10 +114,9 @@ class Login extends Component {
             <option value="other"> Other</option>
           </select>
         </div>
-
-        <button disabled={!isEnabled} onClick={this.handleSubmit}>
-          Login
-        </button>
+        <Link to="/areas" >
+          <button disabled={!isEnabled} onClick={this.handleSubmit}>Login</button>
+        </Link>
       </form>
     );
   }
