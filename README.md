@@ -13,6 +13,7 @@ It is a clone of airBnB where the user can view different areas of Denver and vi
 - Use propTypes for every component receiving props.
 - Write tests for React components and some asynchronous functionality.
 
+- Create an app relying on clean code practices
 ## Screenshots
 ![Login](https://user-images.githubusercontent.com/15935329/78082850-3f605d00-7371-11ea-827d-67d883e922b1.png)
 ![Areas](https://user-images.githubusercontent.com/15935329/78082852-412a2080-7371-11ea-8022-ea972ebec978.png)
@@ -21,12 +22,19 @@ It is a clone of airBnB where the user can view different areas of Denver and vi
 
 ## Technologies Used
 
-- React
+##### Librarys, Frameworks
 - JavaScript
 - CSS
+- React
+- Create React App
+
+##### Testing and Styling
 - Jest
 - React Testing Library
-- fetch API
+- ESLINT
+
+##### APIS
+- Fetch
 
 
 ## Future Work
