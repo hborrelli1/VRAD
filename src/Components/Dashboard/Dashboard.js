@@ -29,6 +29,7 @@ const Dashboard = ({
         render={({location})=> {
           return(
             <Breadcrumb
+              key = {Date.now()}
               path = {location.pathname}
             />
 
@@ -102,6 +103,13 @@ const Dashboard = ({
       </Switch>
     </div>
   );
+};
+
+Dashboard.propTypes = {
+  favorite: PropTypes.func,
+  favoriteLocations: PropTypes.array,
+  goToListing: PropTypes.func,
+  listings: PropTypes.array
 };
 
 export default Dashboard;

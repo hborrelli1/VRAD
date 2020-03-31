@@ -13,7 +13,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      isLoggedIn: false,
+      isLoggedIn: true,
       userInfo: {
         name: "",
         email: "",
@@ -25,7 +25,6 @@ class App extends Component {
       currentListing: {},
       favoriteListingData:[],
       isLoading:false
-      // currentView: ""
     };
   }
 
@@ -37,10 +36,9 @@ class App extends Component {
 
   login = userData => {
     const userState = this.state.userInfo;
-    const updatedState = this.setState({
+    this.setState({
       userInfo: { ...userState, ...userData },
-      isLoggedIn: true,
-      currentView: "AreaContainer"
+      isLoggedIn: true
     });
   };
 
@@ -72,7 +70,7 @@ class App extends Component {
     if (favoriteLocations.includes(`/api/v1/listings/${id}`)) {
       let filteredArray = favoriteLocations.filter(location => location !== `/api/v1/listings/${id}`);
       // Logic to filter favoritedlistingData state and change it.
-      filteredFavoritesData = filteredFavoritesData.filter(favoriteData => favoriteData.listing_id!=id)
+      filteredFavoritesData = filteredFavoritesData.filter(favoriteData => favoriteData.listing_id!==id)
       updatedState = {
         ...this.state.userInfo,
         favoriteLocations: filteredArray
@@ -102,32 +100,40 @@ class App extends Component {
 
   render() {
 
-    const {listings} = this.state;
+    const {
+      listings,
+      areas,
+      currentListing,
+      isLoggedIn,
+      favoriteListingData,
+      isLoading,
+      userInfo
+    } = this.state;
     return (
 
       <main className="App">
 
-        {!this.state.isLoggedIn ?
+        {!isLoggedIn ?
            <Redirect to = "/login"/>
           : <Redirect to = '/areas'/>}
 
         <Header
-          isLoggedIn={this.state.isLoggedIn}
+          isLoggedIn={isLoggedIn}
           toggleLogin={this.toggleLogin}
         />
-      { this.state.isLoggedIn && <Route path="/">
+      { isLoggedIn && <Route path="/">
           <Dashboard
-            userInfo={this.state.userInfo}
-            favoriteListingData = {this.state.favoriteListingData}
-            isLoading = {this.state.isLoading}
-            goToFavRentals={this.goToFavRentals}
-            areas={this.state.areas}
+            areas={areas}
             changeView = {this.changeView}
-            goToListing = {this.goToListing}
+            currentListing={currentListing}
             favorite = {this.favorite}
+            favoriteListingData = {favoriteListingData}
+            goToFavRentals={this.goToFavRentals}
+            goToListing = {this.goToListing}
             isFavorite = {this.isFavorite}
-            listings = {this.state.listings}
-            currentListing={this.state.currentListing}
+            isLoading = {isLoading}
+            listings = {listings}
+            userInfo={userInfo}
             />
 
       </Route>}

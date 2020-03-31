@@ -1,8 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { BASE_URL } from "../../constants/Constants";
 import LocationCard from "../LocationCard/LocationCard";
-import { fetchLocations } from "../../ApiCalls/ApiCalls.js";
 import { IMG_PATH } from "../../constants/Constants";
 
 class LocationContainer extends React.Component {
@@ -27,12 +25,10 @@ class LocationContainer extends React.Component {
     const { listingData } = this.state;
     const {
       favorite,
-      isLoading,
       isFavorite,
       goToListing,
       favoriteLocations,
-      areaName,
-      listings
+      areaName
     } = this.props;
     return (
       <section className="location-conatiner">
@@ -51,7 +47,7 @@ class LocationContainer extends React.Component {
               );
             })
           : listingData.length === 0 && (
-              <img src={`${IMG_PATH}NothingToSee.jpg`} />
+              <img src={`${IMG_PATH}NothingToSee.jpg`} alt = {'No Listings Found'} />
             )}
       </section>
     );

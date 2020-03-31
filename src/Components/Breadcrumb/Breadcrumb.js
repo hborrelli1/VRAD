@@ -39,10 +39,10 @@ const Breadcrumb = props => {
       return {
         routeHTML: (
           <li>
-            <Link key ={Date.now()} to={route.link}>{route.linkText}</Link>
+            <Link key ={route.link} to={route.link}>{route.linkText}</Link>
           </li>
         ),
-        endrouteHTML: <li>{route.linkText}</li>
+        endrouteHTML: <li key= "s">{route.linkText}</li>
       };
     });
 

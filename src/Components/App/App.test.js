@@ -56,14 +56,6 @@ describe("APP", () => {
         ];
   })
 
-  test("renders learn react link", () => {
-    const { getByText } = render(
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    );
-  });
-
   test("Should call fetchFunctions", async () => {
     fetchLocations.mockResolvedValue(locationResponse)
     fetchAreas.mockResolvedValue(areaResponse)
@@ -74,23 +66,85 @@ describe("APP", () => {
         />
       </BrowserRouter>
     );
-    fireEvent.change(getByPlaceholderText("User Name"), {
-      target: { value: "fakeUser" }
+    await wait(() =>
+    {
+      fireEvent.change(getByPlaceholderText("User Name"), {
+        target: { value: "fakeUser" }
+      })
+      fireEvent.change(getByPlaceholderText("Email@provider.com"), {
+        target: { value: "fakeUser@gmail.com" }
+      })
+      fireEvent.change(getByLabelText("purpose of travel"), {
+        target: { value: "buisness" }
+      })
+      fireEvent.click(getByText("Login"))
     });
-    fireEvent.change(getByPlaceholderText("Email@provider.com"), {
-      target: { value: "fakeUser@gmail.com" }
+
+    expect(fetchAreas).toHaveBeenCalled()
+
+  });
+
+  test("Should change to areas view", async () => {
+    fetchLocations.mockResolvedValue(locationResponse)
+    fetchAreas.mockResolvedValue(areaResponse)
+    const { getByText, getByLabelText, getByPlaceholderText, debug } = render(
+      <BrowserRouter>
+        <App
+
+        />
+      </BrowserRouter>
+    );
+    await wait(() =>
+    {
+      fireEvent.change(getByPlaceholderText("User Name"), {
+        target: { value: "fakeUser" }
+      })
+      fireEvent.change(getByPlaceholderText("Email@provider.com"), {
+        target: { value: "fakeUser@gmail.com" }
+      })
+      fireEvent.change(getByLabelText("purpose of travel"), {
+        target: { value: "buisness" }
+      })
+      fireEvent.click(getByText("Login"))
     });
-    fireEvent.change(getByLabelText("purpose of travel"), {
-      target: { value: "buisness" }
-    });
-    fireEvent.click(getByText("Login"));
 
     const areaEl1 = await wait(() => expect(getByText('River North - (RiNo)'))).toBeInTheDocument;
     const areaEl2 = await wait(() => expect(getByText('View 3 Listings in RiNo'))).toBeInTheDocument;
     const areaEl3 = await wait(() => expect(getByText('Park Hill'))).toBeInTheDocument;
     expect(fetchAreas).toHaveBeenCalled()
-
   });
+  test("Should change to locations view", async () => {
+    fetchLocations.mockResolvedValue(locationResponse)
+    fetchAreas.mockResolvedValue(areaResponse)
+    const { getByText, getByLabelText, getByPlaceholderText, debug } = render(
+      <BrowserRouter>
+        <App
 
+        />
+      </BrowserRouter>
+    );
+    await wait(() =>
+    {
+      fireEvent.change(getByPlaceholderText("User Name"), {
+        target: { value: "fakeUser" }
+      })
+      fireEvent.change(getByPlaceholderText("Email@provider.com"), {
+        target: { value: "fakeUser@gmail.com" }
+      })
+      fireEvent.change(getByLabelText("purpose of travel"), {
+        target: { value: "buisness" }
+      })
+      fireEvent.click(getByText("Login"))
+    });
+
+
+
+    const areaEl1 = await wait(() => expect(getByText('River North - (RiNo)'))).toBeInTheDocument;
+    const areaEl2 = await wait(() => expect(getByText('View 3 Listings in RiNo'))).toBeInTheDocument;
+    const areaEl3 = await wait(() => expect(getByText('Park Hill'))).toBeInTheDocument;
+    await wait(() => fireEvent.click(getByText("View 3 Listings in RiNo")));
+
+    expect(getByText("Hip RiNo Party Spot")).toBeInTheDocument();
+  });
 
 })

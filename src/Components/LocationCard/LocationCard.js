@@ -1,19 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { BASE_URL } from "../../constants/Constants";
 import { IMG_PATH } from "../../constants/Constants";
 import { Link } from 'react-router-dom';
 
 const LocationCard = props => {
   const {
     address,
-    area,
-    area_id,
     name,
-    listing_id,
-    details
+    listing_id
   } = props.listingData;
-  const { favoriteLocations, isFavorite, areaName } = props;
+  const { isFavorite, areaName } = props;
   const urlName = name.toLowerCase().split(' ').join('-');
 
   return (
@@ -22,7 +18,7 @@ const LocationCard = props => {
         {name}
       </h2>
       <div className="img-container">
-        <img src={`${IMG_PATH + listing_id}_a.jpg`} />
+        <img src={`${IMG_PATH + listing_id}_a.jpg`} alt = {name+'Image'}/>
       </div>
       <h3 aria-label={address.street}>{address.street}</h3>
       <button

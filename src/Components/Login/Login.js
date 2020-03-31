@@ -64,7 +64,7 @@ class Login extends Component {
 
   validateForm = () => {
     let valid = true;
-    const { errors, name, email, purpose } = this.state;
+    const { errors, name, email } = this.state;
     valid =
       errors.email.length === 0 &&
       errors.name.length === 0 &&

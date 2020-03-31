@@ -18,7 +18,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test --maxWorkers=10",
     "eject": "react-scripts eject",
-    "lint": "eslint"
+    "lint": "eslint",
+    "lint:fix": "eslint --fix ."
   },
   "eslintConfig": {
     "extends": "react-app"

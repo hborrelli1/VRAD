@@ -5,13 +5,10 @@ import { IMG_PATH } from "../../constants/Constants";
 const LocationListingCard = ({ currentListing, favorite, isFavorite }) => {
   const {
     listing_id,
-    area_id,
     name,
     address,
     details,
-    dev_id,
     area,
-    db_connect
   } = currentListing;
   let uniqueKey = 0;
 
