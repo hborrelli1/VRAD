@@ -13,7 +13,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      isLoggedIn: true,
+      isLoggedIn: false,
       userInfo: {
         name: "",
         email: "",
@@ -101,12 +101,12 @@ class App extends Component {
   render() {
 
     const {
-      listings,
       areas,
       currentListing,
-      isLoggedIn,
       favoriteListingData,
       isLoading,
+      isLoggedIn,
+      listings,
       userInfo
     } = this.state;
     return (

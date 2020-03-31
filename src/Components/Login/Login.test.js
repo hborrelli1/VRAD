@@ -7,7 +7,7 @@ import { BrowserRouter } from "react-router-dom";
 describe("Login", () => {
   it("sends the correct data up to app via Login", () => {
     const mockLogin = jest.fn();
-    const { debug, getByPlaceholderText, getByText, getByLabelText } = render(
+    const { getByPlaceholderText, getByText, getByLabelText } = render(
       <BrowserRouter>
         <Login login={mockLogin} />
       </BrowserRouter>
@@ -32,7 +32,7 @@ describe("Login", () => {
 
   it("Should not send anything if data is wrong", () => {
     const mockLogin = jest.fn();
-    const { debug, getByPlaceholderText, getByText } = render(
+    const { getByPlaceholderText, getByText } = render(
       <BrowserRouter>
         <Login login={mockLogin} />
       </BrowserRouter>
@@ -49,7 +49,7 @@ describe("Login", () => {
   });
 
   it("Should check if the name length is longer than 5 char", () => {
-    const { debug, getByPlaceholderText, getByText } = render(
+    const { getByPlaceholderText, getByText } = render(
       <BrowserRouter>
         <Login />
       </BrowserRouter>
@@ -64,7 +64,7 @@ describe("Login", () => {
   });
 
   it("Should check if the email is not valid", () => {
-    const { debug, getByPlaceholderText, getByText } = render(
+    const { getByPlaceholderText, getByText } = render(
       <BrowserRouter>
         <Login />
       </BrowserRouter>

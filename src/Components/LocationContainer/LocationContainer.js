@@ -58,7 +58,9 @@ LocationContainer.propTypes = {
   favorite: PropTypes.func,
   favoriteLocations: PropTypes.array,
   goToListing: PropTypes.func,
-  listings: PropTypes.array
+  listings: PropTypes.array,
+  isFavorite:PropTypes.func,
+  areaName:PropTypes.string
 };
 
 export default LocationContainer;

@@ -4,7 +4,7 @@ import './UserProfile.scss';
 import { Link } from 'react-router-dom';
 
 
-const UserProfile = ({ userInfo, goToFavRentals,pathName,goBack}) => {
+const UserProfile = ({ userInfo, goToFavRentals,pathName}) => {
 
   const { name, email, purpose, favoriteLocations } = userInfo;
   const greeting = `Select from the following areas to find the perfect location for your ${purpose} trip!`;
@@ -42,7 +42,9 @@ const UserProfile = ({ userInfo, goToFavRentals,pathName,goBack}) => {
 
 UserProfile.propTypes = {
   userInfo: PropTypes.object,
-  goToFavRentals: PropTypes.func
+  goToFavRentals: PropTypes.func,
+  pathName: PropTypes.string,
+
 }
 
 export default UserProfile;

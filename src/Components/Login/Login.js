@@ -43,16 +43,13 @@ class Login extends Component {
         break;
     }
 
-    this.setState({ errors, [name]: value }, () => {
-      // console.log(errors);
-    });
+    this.setState({ errors, [name]: value })
   };
 
-  handleSubmit = event => {
+  handleSubmit = () => {
     if (this.validateForm(this.state.errors)) {
-      const { login } = this.props;
       const { name, email, purpose } = this.state;
-      login({
+      this.props.login({
         name: name,
         email: email,
         purpose: purpose
@@ -122,7 +119,7 @@ class Login extends Component {
 }
 
 Login.propTypes = {
-  Login: PropTypes.func
+  login: PropTypes.func
 };
 
 export default Login;

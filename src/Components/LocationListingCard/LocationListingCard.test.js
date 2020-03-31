@@ -5,7 +5,6 @@ import { BrowserRouter } from 'react-router-dom';
 
 describe("LocationListingCard Test", () => {
   let currentListing;
-  let favoriteLocations
 
   beforeEach(() => {
     currentListing = {
@@ -32,7 +31,6 @@ describe("LocationListingCard Test", () => {
       "area": "rino",
       "db_connect": 834470
     }
-    favoriteLocations = [3];
   })
 
   it("should be able to render location info to DOM", () => {

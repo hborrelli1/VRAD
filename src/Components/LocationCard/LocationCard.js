@@ -23,13 +23,13 @@ const LocationCard = props => {
       <h3 aria-label={address.street}>{address.street}</h3>
       <button
         className={`${isFavorite(listing_id)}`}
-        onClick={event => props.favorite(listing_id)}
+        onClick={() => props.favorite(listing_id)}
       >
         {`${isFavorite(listing_id)}`}
       </button>
       <Link
         to={`/areas/${areaName}/${urlName}`}
-        onClick={event => props.goToListing(props.listingData, "LocationListingCard")}
+        onClick={() => props.goToListing(props.listingData, "LocationListingCard")}
       >
         <button>Go to Listing</button>
       </Link>
@@ -44,8 +44,13 @@ LocationCard.propTypes = {
   listingData: PropTypes.shape({
     address: PropTypes.object,
     area_id: PropTypes.number,
-    details: PropTypes.object
-  })
+    details: PropTypes.object,
+    name:PropTypes.string,
+    listing_id:PropTypes.string
+  }),
+  isFavorite:PropTypes.func,
+  areaName:PropTypes.string
+
 };
 
 export default LocationCard;
