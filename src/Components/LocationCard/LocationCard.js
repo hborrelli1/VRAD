@@ -18,25 +18,29 @@ const LocationCard = props => {
 
   return (
     <article className="card">
-      <h2 className="card-heading" aria-label={name}>
-        {name}
-      </h2>
       <div className="img-container">
         <img src={`${IMG_PATH + listing_id}_a.jpg`} />
       </div>
-      <h3 aria-label={address.street}>{address.street}</h3>
-      <button
-        className={`${isFavorite(listing_id)}`}
-        onClick={event => props.favorite(listing_id)}
-      >
-        {`${isFavorite(listing_id)}`}
-      </button>
-      <Link
-        to={`/areas/${areaName}/${urlName}`}
-        onClick={event => props.goToListing(props.listingData, "LocationListingCard")}
-      >
-        <button>Go to Listing</button>
-      </Link>
+      <div className="info-container">
+        <h2 className="card-heading" aria-label={name}>
+          {name}
+        </h2>
+        <h3 aria-label={address.street}>{address.street}</h3>
+        <div className="button-wrap">
+          <button
+            className={`${isFavorite(listing_id)}`}
+            onClick={event => props.favorite(listing_id)}
+            >
+            {`${isFavorite(listing_id)}`}
+          </button>
+          <Link
+            to={`/areas/${areaName}/${urlName}`}
+            onClick={event => props.goToListing(props.listingData, "LocationListingCard")}
+            >
+            <button>Go to Listing</button>
+          </Link>
+        </div>
+      </div>
     </article>
   );
 };
