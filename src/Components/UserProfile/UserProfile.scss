@@ -1,5 +1,5 @@
 .user-profile {
-  border:1px solid #979797;
+  border:1px solid #b3b3b3;
   border-radius:4px;
   width:23%;
   text-align:left;
@@ -45,19 +45,22 @@
       color:#fff;
     }
 
-    button {
-      display: block;
-      padding:10px 20px;
-      background-color:#979797;
-      color:#fff;
-      text-transform:uppercase;
+    a {
+      text-decoration:none;
+      button {
+        display: block;
+        padding:10px 20px;
+        // background-color:#979797;
+        color:#fff;
+        text-transform:uppercase;
 
-      span {
-        margin-left:10px;
-      }
+        span {
+          margin-left:10px;
+        }
 
-      &:hover {
-        cursor:pointer;
+        &:hover {
+          cursor:pointer;
+        }
       }
     }
   }
