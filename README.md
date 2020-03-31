@@ -7,7 +7,7 @@ It is a clone of airBnB where the user can view different areas of Denver and vi
 ## Screenshots
 
 
-### Technologies Used
+## Technologies Used
 
 - React
 - JavaScript
@@ -17,4 +17,8 @@ It is a clone of airBnB where the user can view different areas of Denver and vi
 - fetch API
 
 
-### Future Work
+## Future Work
+
+## Contributers
+* **Harry Borrelli**  - *Initial work* - [gitHubPage](https://github.com/hborrelli1)
+* **Erik Raith**  - *Initial work* - [gitHubPage](https://github.com/ERaith)
