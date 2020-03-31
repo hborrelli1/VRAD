@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './UserProfile.scss';
+import { Link } from 'react-router-dom';
 
-const UserProfile = ({ userInfo, goToFavRentals }) => {
+
+const UserProfile = ({ userInfo, goToFavRentals,pathName,goBack}) => {
 
   const { name, email, purpose, favoriteLocations } = userInfo;
   const greeting = `Select from the following areas to find the perfect location for your ${purpose} trip!`;
@@ -17,9 +19,13 @@ const UserProfile = ({ userInfo, goToFavRentals }) => {
       <div className="user-meta">
         <h4>Reason for visiting:</h4>
         <p className="purpose">{purpose}</p>
-        <button
-          onClick={goToFavRentals}
-        >Favorited Rentals <span>{favoriteLocations.length}</span></button>
+        <Link
+          to= {pathName.includes('favorites')?'/' :`/favorites/`}
+          >
+          <button
+            onClick={goToFavRentals}
+            >Favorited Rentals <span>{favoriteLocations.length}</span></button>
+        </Link>
       </div>
       <div></div>
     </div>

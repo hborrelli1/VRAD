@@ -2,7 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import { BASE_URL } from "../../constants/Constants";
 import LocationCard from "../LocationCard/LocationCard";
-import {fetchLocations} from "../../ApiCalls/ApiCalls.js";
+import { fetchLocations } from "../../ApiCalls/ApiCalls.js";
+import { IMG_PATH } from "../../constants/Constants";
 
 class LocationContainer extends React.Component {
   constructor() {
@@ -12,35 +13,43 @@ class LocationContainer extends React.Component {
     };
   }
 
-  locationContainerHelper = async (listings) => {
-    let data = await fetchLocations(listings);
-    this.setState({ listingData: data });
-
-  };
-
-  componentDidMount() {
-    this.locationContainerHelper(this.props.listings);
-  }
+    componentDidUpdate = (prevState) => {
+      if(this.props.listings !== prevState.listings){
+        this.setState({listingData:this.props.listings})
+      }
+    }
 
   render() {
     const { listingData } = this.state;
-    const { favorite, isFavorite, goToListing, favoriteLocations, areaName } = this.props;
+    const {
+      favorite,
+      isLoading,
+      isFavorite,
+      goToListing,
+      favoriteLocations,
+      areaName,
+      listings
+    } = this.props;
     return (
+
+
       <section className="location-conatiner">
-        {
-          listingData.map(listing => {
-          return (
-            <LocationCard
-              areaName = {areaName}
-              favorite={favorite}
-              isFavorite={isFavorite}
-              key={listing.listing_id}
-              listingData={listing}
-              goToListing={goToListing}
-              favoriteLocations={favoriteLocations}
-            />
-          );
-        })}
+        {listingData.length
+          ?listingData.map(listing => {
+            return (
+              <LocationCard
+                areaName={areaName}
+                favorite={favorite}
+                isFavorite={isFavorite}
+                key={listing.listing_id}
+                listingData={listing}
+                goToListing={goToListing}
+                favoriteLocations={favoriteLocations}
+              />
+            );
+          })
+          : !isLoading && <img src={`${IMG_PATH}NothingToSee.jpg`} />
+        }
       </section>
     );
   }

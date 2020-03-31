@@ -16,12 +16,18 @@ const Dashboard = ({
   isFavorite,
   listings,
   changeView,
-  currentListing
+  currentListing,
+  favoriteListingData,
+  isLoading
 }) => {
   const { favoriteLocations } = userInfo;
   return (
     <div className="dashboard">
-      <UserProfile userInfo={userInfo} goToFavRentals={goToFavRentals} />
+      <Route
+        render = {({location, history}) =>
+          <UserProfile userInfo={userInfo} goToFavRentals={goToFavRentals} goBack = {history.goBack} pathName = {location.pathname} />
+        }
+      />
 
       <Switch>
         <Route
@@ -38,10 +44,29 @@ const Dashboard = ({
             return (
               <LocationContainer
                 areaName={areaName}
+                isLoading = {isLoading}
                 goToListing={goToListing}
                 favorite={favorite}
                 isFavorite={isFavorite}
                 listings={listings}
+                favoriteLocations={favoriteLocations}
+              />
+            );
+          }}
+        />
+        <Route
+          exact
+          path="/favorites"
+          render={() => {
+
+            return (
+              <LocationContainer
+                areaName={'favorites'}
+                isLoading = {isLoading}
+                goToListing={goToListing}
+                favorite={favorite}
+                isFavorite={isFavorite}
+                listings={favoriteListingData}
                 favoriteLocations={favoriteLocations}
               />
             );
