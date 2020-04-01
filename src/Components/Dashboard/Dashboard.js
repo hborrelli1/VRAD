@@ -35,31 +35,33 @@ const Dashboard = ({
             <UserProfile userInfo={userInfo} goToFavRentals={goToFavRentals} pathName = {location.pathname} />
           }
         />
-
+        
         <Switch>
           <Route
             exact
             path="/areas/"
             render={() => <AreaContainer areas={areas} changeView={changeView} />}
           />
-        <Route
-          exact
-          path="/favorites"
-          render={() => {
+          <Route
+            exact
+            path="/favorites"
+            render={() => {
 
-            return (
-              <LocationContainer
-                areaName={'favorites'}
-                isLoading = {isLoading}
-                goToListing={goToListing}
-                favorite={favorite}
-                isFavorite={isFavorite}
-                listings={favoriteListingData}
-                favoriteLocations={favoriteLocations}
-                />
-            );
-          }}
-          />
+
+                return (
+                  <LocationContainer
+                    areaName={'favorites'}
+                    isLoading = {isLoading}
+                    goToListing={goToListing}
+                    favorite={favorite}
+                    isFavorite={isFavorite}
+                    listings={favoriteListingData}
+                    favoriteLocations={favoriteLocations}
+                    />
+                );
+
+            }}
+            />
 
           <Route
             exact

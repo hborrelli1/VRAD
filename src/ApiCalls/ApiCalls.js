@@ -1,9 +1,9 @@
 import { BASE_URL } from "../constants/Constants";
 
 export const fetchLocations = (listings) => {
-  if(listings.length === 0) {
-    return  []
-  }
+  // if(listings.length === 0) {
+  //   return  []
+  // }
   const promises = listings.map(listing => {
     return fetch(BASE_URL + listing)
       .then(res => res.json())
@@ -13,7 +13,7 @@ export const fetchLocations = (listings) => {
         };
       })
       .catch(err => {
-        return err;
+        return [];
       });
   });
   return Promise.all(promises);
@@ -23,7 +23,7 @@ export const fetchAreas = () => {
   return fetch('http://localhost:3001/api/v1/areas')
     .then(res => res.json())
     .then(areaData => getAreaDetails(areaData))
-    .catch(err => console.log(err.message));
+    .catch(err => []);
 };
 
 export const getAreaDetails = (areaData) => {
