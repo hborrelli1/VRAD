@@ -1,5 +1,5 @@
 import React from "react";
-import { render, wait } from "@testing-library/react";
+import { render, waitFor } from "@testing-library/react";
 import LocationContainer from "./LocationContainer";
 import "@testing-library/jest-dom";
 import {fetchLocations} from "../../ApiCalls/ApiCalls.js";
@@ -56,8 +56,8 @@ describe("Test", () => {
         />
       </BrowserRouter>
     );
-    await wait(()=> expect(getByText("Hip RiNo Party Spot")).toBeInTheDocument())
-    await wait(()=> expect(getByText("2250 Lawrence St")).toBeInTheDocument())
+    await waitFor(()=> expect(getByText("Hip RiNo Party Spot")).toBeInTheDocument())
+    await waitFor(()=> expect(getByText("2250 Lawrence St")).toBeInTheDocument())
 
   });
 });
