@@ -47,7 +47,7 @@ class LocationContainer extends React.Component {
               );
             })
           : listingData.length === 0 && (
-              <img src={`${IMG_PATH}NothingToSee.jpg`} alt = {'No Listings Found'} />
+              <div className = "not-found">You do not have any favroites yet<img src={`${IMG_PATH}NothingToSee.jpg`} alt = {'No Listings Found'} /></div>
             )}
       </section>
     );

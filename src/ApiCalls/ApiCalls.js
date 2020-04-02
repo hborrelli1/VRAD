@@ -23,7 +23,7 @@ export const fetchAreas = () => {
   return fetch('http://localhost:3001/api/v1/areas')
     .then(res => res.json())
     .then(areaData => getAreaDetails(areaData))
-    .catch(err => console.log(err.message));
+    .catch(err => []);
 };
 
 export const getAreaDetails = (areaData) => {
