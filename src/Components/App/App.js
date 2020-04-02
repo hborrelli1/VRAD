@@ -13,12 +13,12 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      isLoggedIn: false,
+      isLoggedIn: true,
       userInfo: {
         name: "",
         email: "",
         purpose: "",
-        favoriteLocations: ['/api/v1/listings/3', '/api/v1/listings/44']
+        favoriteLocations: []
       },
       areas: [],
       listings:[],
@@ -29,8 +29,10 @@ class App extends Component {
   }
 
   componentDidMount = async () => {
+    this.setState({isLoading:true})
     let areasList = await fetchAreas();
     this.setState({ areas: areasList });
+    this.setState({isLoading:false})
   }
 
 
@@ -121,7 +123,7 @@ class App extends Component {
           isLoggedIn={isLoggedIn}
           toggleLogin={this.toggleLogin}
         />
-      { isLoggedIn && <Route path="/">
+      { isLoggedIn && !isLoading && <Route path="/">
           <Dashboard
             areas={areas}
             changeView = {this.changeView}
