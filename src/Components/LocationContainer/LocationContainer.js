@@ -28,7 +28,8 @@ class LocationContainer extends React.Component {
       isFavorite,
       goToListing,
       favoriteLocations,
-      areaName
+      areaName,
+      isLoading
     } = this.props;
     return (
       <section className="location-conatiner">
@@ -46,7 +47,7 @@ class LocationContainer extends React.Component {
                 />
               );
             })
-          : listingData.length === 0 && (
+          : listingData.length === 0 && !isLoading && (
               <div className = "not-found">You do not have any favroites yet<img src={`${IMG_PATH}NothingToSee.jpg`} alt = {'No Listings Found'} /></div>
             )}
       </section>
@@ -60,7 +61,8 @@ LocationContainer.propTypes = {
   goToListing: PropTypes.func,
   listings: PropTypes.array,
   isFavorite:PropTypes.func,
-  areaName:PropTypes.string
+  areaName:PropTypes.string,
+  isLoading:PropTypes.bool
 };
 
 export default LocationContainer;

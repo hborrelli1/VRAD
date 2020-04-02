@@ -37,6 +37,7 @@ const LocationListingCard = ({ currentListing, favorite, isFavorite }) => {
       </div>
       <div className="fav-button">
         <button
+          className={`${isFavorite(listing_id)}`}
           onClick={() => favorite(listing_id)}
         >
           {isFavorite(listing_id)}

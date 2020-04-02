@@ -25,59 +25,62 @@ const Dashboard = ({
   return (
     <div className="dashboard">
       <Route
-        path = "/"
-        render={({location}) => <Breadcrumb path = {location.pathname} /> }
-        />
+        path="/"
+        render={({ location }) => <Breadcrumb path={location.pathname} />}
+      />
 
       <div className="content-wrapper">
         <Route
-          render = {({location}) =>
-            <UserProfile userInfo={userInfo} goToFavRentals={goToFavRentals} pathName = {location.pathname} />
-          }
+          render={({ location }) => (
+            <UserProfile
+              userInfo={userInfo}
+              goToFavRentals={goToFavRentals}
+              pathName={location.pathname}
+            />
+          )}
         />
 
         <Switch>
-
-          {areas.length!==0 && <Route
-            exact
-            path="/areas/"
-            render={() => <AreaContainer areas={areas} changeView={changeView} />}
-          />}
-          {areas.length==0 && <Route
-            exact
-            path="/areas/"
-            render={() => <div className = "not-found">Oops we ran into some issues getting your data.<img src={`${IMG_PATH}NothingToSee.jpg`} alt = {'No Listings Found'} /></div>}
-          />}
+          {areas.length !== 0 && (
+            <Route
+              exact
+              path="/areas/"
+              render={() => (
+                <AreaContainer areas={areas} changeView={changeView} />
+              )}
+            />
+          )}
+          {areas.length == 0 && (
+            <Route
+              exact
+              path="/areas/"
+              render={() => (
+                <div className="not-found">
+                  Oops we ran into some issues getting your data.
+                  <img
+                    src={`${IMG_PATH}NothingToSee.jpg`}
+                    alt={"No Listings Found"}
+                  />
+                </div>
+              )}
+            />
+          )}
           <Route
             exact
             path="/favorites"
             render={() => {
-
-
-                return (
-                  <LocationContainer
-                    areaName={'favorites'}
-                    isLoading = {isLoading}
-                    goToListing={goToListing}
-                    favorite={favorite}
-                    isFavorite={isFavorite}
-                    listings={favoriteListingData}
-                    favoriteLocations={favoriteLocations}
-                    />
-                );
-
-            return (
-              <LocationContainer
-                areaName={'favorites'}
-                isLoading = {isLoading}
-                goToListing={goToListing}
-                favorite={favorite}
-                isFavorite={isFavorite}
-                listings={favoriteListingData}
-                favoriteLocations={favoriteLocations}
+              return (
+                <LocationContainer
+                  areaName={"favorites"}
+                  isLoading={isLoading}
+                  goToListing={goToListing}
+                  favorite={favorite}
+                  isFavorite={isFavorite}
+                  listings={favoriteListingData}
+                  favoriteLocations={favoriteLocations}
                 />
-            );
-          }}
+              );
+            }}
           />
 
           <Route
@@ -88,7 +91,7 @@ const Dashboard = ({
               return (
                 <LocationContainer
                   areaName={areaName}
-                  isLoading = {isLoading}
+                  isLoading={isLoading}
                   goToListing={goToListing}
                   favorite={favorite}
                   isFavorite={isFavorite}
@@ -104,12 +107,15 @@ const Dashboard = ({
             path="/areas/:areaName/:id"
             render={({ match }) => {
               const areaName = match.params.id;
-              return <LocationListingCard
-                favorite={favorite}
-                isFavorite={isFavorite}
-                currentListing={currentListing}
-                areaName={areaName}
-              />}}
+              return (
+                <LocationListingCard
+                  favorite={favorite}
+                  isFavorite={isFavorite}
+                  currentListing={currentListing}
+                  areaName={areaName}
+                />
+              );
+            }}
           />
         </Switch>
       </div>
@@ -122,14 +128,14 @@ Dashboard.propTypes = {
   favoriteLocations: PropTypes.array,
   goToListing: PropTypes.func,
   listings: PropTypes.array,
-  userInfo:PropTypes.object,
-  areas:PropTypes.array,
-  goToFavRentals:PropTypes.func,
-  isFavorite:PropTypes.func,
-  changeView:PropTypes.func,
-  currentListing:PropTypes.object,
-  favoriteListingData:PropTypes.array,
-  isLoading:PropTypes.bool
+  userInfo: PropTypes.object,
+  areas: PropTypes.array,
+  goToFavRentals: PropTypes.func,
+  isFavorite: PropTypes.func,
+  changeView: PropTypes.func,
+  currentListing: PropTypes.object,
+  favoriteListingData: PropTypes.array,
+  isLoading: PropTypes.bool
 };
 
 export default Dashboard;
