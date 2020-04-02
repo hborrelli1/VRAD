@@ -81,7 +81,7 @@ describe('ApiCalls Tests', () => {
   });
 
   it('should be able to fetch areas', async () => {
-    const { getByText, unmount } = render(
+    const { getByText } = render(
       <BrowserRouter>
         <App />
       </BrowserRouter>
@@ -100,7 +100,7 @@ describe('ApiCalls Tests', () => {
     fetchAreas.mockResolvedValue(fetchAreasResponse);
     getAreaDetails.mockResolvedValue(areaData)
 
-    const { getByText, getByPlaceholderText, getByLabelText, debug } = render(
+    render(
       <BrowserRouter>
         <App />
       </BrowserRouter>
@@ -117,7 +117,7 @@ describe('ApiCalls Tests', () => {
     fetchAreas.mockResolvedValue(fetchAreasResponse);
     fetchLocations.mockResolvedValue(locationResponse);
 
-    const { getByText, getByPlaceholderText, getByLabelText, debug } = render(
+    const { getByText, getByPlaceholderText, getByLabelText } = render(
       <BrowserRouter>
         <App />
       </BrowserRouter>
@@ -136,12 +136,9 @@ describe('ApiCalls Tests', () => {
     })
 
     fireEvent.click(loginButton)
+    const rinoAreaButton = await waitFor(() => getByText('View 6 Listings in RiNo'))
 
-    const rinoAreaButton = await waitFor(() => {
-      expect(getByText('View 6 Listings in RiNo')).toBeInTheDocument();
-    })
-
-    fireEvent.click(getByText('View 6 Listings in RiNo'))
+    fireEvent.click(rinoAreaButton)
 
     expect(fetchLocations).toHaveBeenCalledTimes(1)
     expect(fetchLocations).toHaveBeenCalledWith(fetchAreasResponse[0].listings);

@@ -53,7 +53,7 @@ describe("APP", () => {
   test("Should call fetchFunctions", async () => {
     fetchLocations.mockResolvedValue(locationResponse);
     fetchAreas.mockResolvedValue(areaResponse);
-    const { getByText, getByLabelText, getByPlaceholderText, debug } = render(
+    const { getByText, getByLabelText, getByPlaceholderText } = render(
       <BrowserRouter>
         <App />
       </BrowserRouter>
@@ -79,7 +79,7 @@ describe("APP", () => {
   test("Should change to areas view", async () => {
     fetchLocations.mockResolvedValue(locationResponse);
     fetchAreas.mockResolvedValue(areaResponse);
-    const { getByText, getByLabelText, getByPlaceholderText, debug } = render(
+    const { getByText, getByLabelText, getByPlaceholderText } = render(
       <BrowserRouter>
         <App />
       </BrowserRouter>
@@ -98,19 +98,12 @@ describe("APP", () => {
     fireEvent.click(getByText("Login"));
     const riverNorth = await waitFor(() => getByText("River North - (RiNo)"));
     expect(riverNorth).toBeInTheDocument();
-
-    const listingButton = await waitFor(() =>
-      getByText("View 3 Listings in RiNo")
-    );
-
-    // await wait(() => expect(getByText('View 3 Listings in RiNo'))).toBeInTheDocument;
-    // await wait(() => expect(getByText('Park Hill'))).toBeInTheDocument;
   });
 
   test("Should change to locations view", async () => {
     fetchLocations.mockResolvedValue(locationResponse);
     fetchAreas.mockResolvedValue(areaResponse);
-    const { getByText, getByLabelText, getByPlaceholderText, debug } = render(
+    const { getByText, getByLabelText, getByPlaceholderText } = render(
       <BrowserRouter>
         <App />
       </BrowserRouter>
@@ -140,7 +133,7 @@ describe("APP", () => {
   test("Should change to listings view", async () => {
     fetchLocations.mockResolvedValue(locationResponse);
     fetchAreas.mockResolvedValue(areaResponse);
-    const { getByText, getByLabelText, getByPlaceholderText, debug } = render(
+    const { getByText, getByLabelText, getByPlaceholderText } = render(
       <BrowserRouter>
         <App />
       </BrowserRouter>
@@ -173,7 +166,7 @@ describe("APP", () => {
   test("Should change to favorites", async () => {
     fetchLocations.mockResolvedValue(locationResponse);
     fetchAreas.mockResolvedValue(areaResponse);
-    const { getByText, getByLabelText, getByPlaceholderText, debug } = render(
+    const { getByText, getByLabelText, getByPlaceholderText } = render(
       <BrowserRouter>
         <App />
       </BrowserRouter>
