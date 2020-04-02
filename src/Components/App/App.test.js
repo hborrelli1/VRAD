@@ -77,7 +77,6 @@ describe("APP", () => {
   });
 
   test("Should change to areas view", async () => {
-    jest.clearAllMocks()
     fetchLocations.mockResolvedValue(locationResponse);
     fetchAreas.mockResolvedValue(areaResponse);
     const { getByText, getByLabelText, getByPlaceholderText, debug } = render(
@@ -103,8 +102,6 @@ describe("APP", () => {
     const listingButton = await waitFor(() =>
       getByText("View 3 Listings in RiNo")
     );
-
-    expect(fetchAreas).toBeCalledTimes(1)
 
     // await wait(() => expect(getByText('View 3 Listings in RiNo'))).toBeInTheDocument;
     // await wait(() => expect(getByText('Park Hill'))).toBeInTheDocument;

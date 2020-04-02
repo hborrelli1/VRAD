@@ -7,7 +7,6 @@ import LocationContainer from "../LocationContainer/LocationContainer";
 import LocationListingCard from "../LocationListingCard/LocationListingCard";
 import Breadcrumb from "../Breadcrumb/Breadcrumb";
 import './Dashboard.scss';
-import { IMG_PATH } from "../../constants/Constants";
 
 const Dashboard = ({
   userInfo,
@@ -38,36 +37,29 @@ const Dashboard = ({
         />
 
         <Switch>
-          {listings && <Route
-            exact
-            path="/areas/"
-            render={() => <div className = "not-found">There was an error finding the data requested<img src={`${IMG_PATH}NothingToSee.jpg`} alt = {'No Listings Found'} /></div>}
-          />}
-          {!listings && <Route
+          <Route
             exact
             path="/areas/"
             render={() => <AreaContainer areas={areas} changeView={changeView} />}
-          />}
-          <Route
-            exact
-            path="/favorites"
-            render={() => {
+          />
+        <Route
+          exact
+          path="/favorites"
+          render={() => {
 
-
-                return (
-                  <LocationContainer
-                    areaName={'favorites'}
-                    isLoading = {isLoading}
-                    goToListing={goToListing}
-                    favorite={favorite}
-                    isFavorite={isFavorite}
-                    listings={favoriteListingData}
-                    favoriteLocations={favoriteLocations}
-                    />
-                );
-
-            }}
-            />
+            return (
+              <LocationContainer
+                areaName={'favorites'}
+                isLoading = {isLoading}
+                goToListing={goToListing}
+                favorite={favorite}
+                isFavorite={isFavorite}
+                listings={favoriteListingData}
+                favoriteLocations={favoriteLocations}
+                />
+            );
+          }}
+          />
 
           <Route
             exact
