@@ -19,7 +19,6 @@
   &:hover,
   :active,
   :focus {
-    // background: $highlight;
     transition: all .2s;
     background: $button-background-hover;
   }
@@ -53,6 +52,7 @@
   font-size: $font-size-medium;
 }
 
-@mixin colorPurple() {
-  color:$primary-purple;
+@mixin card() {
+  border: $card-border;
+  box-shadow:$box-shadow;
 }

@@ -2,14 +2,14 @@ footer {
   width:100%;
   text-align:center;
   max-height:4.5rem;
-  border-top:1px solid #979797;
+  border-top:$card-border;
   padding-top:20px;
   display: flex;
   flex-flow: column;
   margin-top:auto;
 
   * {
-    color:#616161;
+    color:$medium-gray;
   }
 
   p {
