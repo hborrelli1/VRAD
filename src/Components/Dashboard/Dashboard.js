@@ -7,6 +7,7 @@ import LocationContainer from "../LocationContainer/LocationContainer";
 import LocationListingCard from "../LocationListingCard/LocationListingCard";
 import Breadcrumb from "../Breadcrumb/Breadcrumb";
 import './Dashboard.scss';
+import { IMG_PATH } from "../../constants/Constants";
 
 const Dashboard = ({
   userInfo,
@@ -35,13 +36,18 @@ const Dashboard = ({
             <UserProfile userInfo={userInfo} goToFavRentals={goToFavRentals} pathName = {location.pathname} />
           }
         />
-        
+
         <Switch>
-          <Route
+          {listings && <Route
+            exact
+            path="/areas/"
+            render={() => <div className = "not-found">There was an error finding the data requested<img src={`${IMG_PATH}NothingToSee.jpg`} alt = {'No Listings Found'} /></div>}
+          />}
+          {!listings && <Route
             exact
             path="/areas/"
             render={() => <AreaContainer areas={areas} changeView={changeView} />}
-          />
+          />}
           <Route
             exact
             path="/favorites"
