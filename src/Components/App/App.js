@@ -13,7 +13,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      isLoggedIn: true,
+      isLoggedIn: false,
       userInfo: {
         name: "",
         email: "",
@@ -29,10 +29,8 @@ class App extends Component {
   }
 
   componentDidMount = async () => {
-    this.setState({isLoading:true})
     let areasList = await fetchAreas();
     this.setState({ areas: areasList });
-    this.setState({isLoading:false})
   }
 
 
@@ -123,7 +121,7 @@ class App extends Component {
           isLoggedIn={isLoggedIn}
           toggleLogin={this.toggleLogin}
         />
-      { isLoggedIn && !isLoading && <Route path="/">
+      { isLoggedIn && <Route path="/">
           <Dashboard
             areas={areas}
             changeView = {this.changeView}

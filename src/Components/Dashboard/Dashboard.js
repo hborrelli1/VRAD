@@ -47,7 +47,7 @@ const Dashboard = ({
           {areas.length==0 && <Route
             exact
             path="/areas/"
-            render={() => <div className = "not-found">You do not have any favroites yet<img src={`${IMG_PATH}NothingToSee.jpg`} alt = {'No Listings Found'} /></div>}
+            render={() => <div className = "not-found">Oops we ran into some issues getting your data.<img src={`${IMG_PATH}NothingToSee.jpg`} alt = {'No Listings Found'} /></div>}
           />}
           <Route
             exact
@@ -67,8 +67,19 @@ const Dashboard = ({
                     />
                 );
 
-            }}
-            />
+            return (
+              <LocationContainer
+                areaName={'favorites'}
+                isLoading = {isLoading}
+                goToListing={goToListing}
+                favorite={favorite}
+                isFavorite={isFavorite}
+                listings={favoriteListingData}
+                favoriteLocations={favoriteLocations}
+                />
+            );
+          }}
+          />
 
           <Route
             exact
