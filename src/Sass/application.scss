@@ -2,9 +2,16 @@
 @import "./_mixins.scss";
 @import "../Components/App/App.scss";
 @import "../Components/Login/Login.scss";
+@import "../Components/UserProfile/UserProfile.scss";
 @import "../Components/LocationCard/LocationCard.scss";
 @import "../Components/LocationContainer/LocationContainer.scss";
 @import "../Components/Header/Header.scss";
+@import "../Components/AreaCard/AreaCard.scss";
+@import "../Components/AreaContainer/AreaContainer.scss";
+@import "../Components/Breadcrumb/Breadcrumb.scss";
+@import "../Components/Dashboard/Dashboard.scss";
+@import "../Components/Footer/Footer.scss";
+@import "../Components/LocationListingCard/LocationListingCard.scss";
 
 body {
   margin: 0;

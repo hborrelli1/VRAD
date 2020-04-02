@@ -1,9 +1,9 @@
-.card{
+.card {
+  @include card();
   width:49%;
   margin-bottom:30px;
   border-radius: 4px;
   overflow:hidden;
-  border:1px solid #b3b3b3;
 
   .img-container {
     width: 100%;
@@ -21,7 +21,6 @@
 
     .card-heading{
       margin-bottom:4px;
-
     }
 
     h3 {
@@ -38,11 +37,8 @@
         width:unset;
         padding:15px 30px;
       }
-
     }
-
   }
-
 
   &:nth-child(2n + 2) {
     margin-right: 0;
@@ -52,18 +48,15 @@
 article {
   background-color: white;
   width:800px;
-  // height: 500px;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  // margin: .5rem;
   margin-right:2%;
   display: flex;
   flex-direction: column;
 }
 
 .favorite {
-  background-color: red;
+  background-color: $highlight;
 }
 .add-to-favorites {
   background-color: pink;
-  color:grey;
+  color:$medium-gray;
 }

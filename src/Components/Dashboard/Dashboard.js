@@ -6,7 +6,6 @@ import AreaContainer from "../AreaContainer/AreaContainer";
 import LocationContainer from "../LocationContainer/LocationContainer";
 import LocationListingCard from "../LocationListingCard/LocationListingCard";
 import Breadcrumb from "../Breadcrumb/Breadcrumb";
-import './Dashboard.scss';
 import { IMG_PATH } from "../../constants/Constants";
 
 const Dashboard = ({
