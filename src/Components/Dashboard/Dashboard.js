@@ -38,15 +38,16 @@ const Dashboard = ({
         />
 
         <Switch>
-          {listings && <Route
-            exact
-            path="/areas/"
-            render={() => <div className = "not-found">There was an error finding the data requested<img src={`${IMG_PATH}NothingToSee.jpg`} alt = {'No Listings Found'} /></div>}
-          />}
-          {!listings && <Route
+
+          {areas.length!==0 && <Route
             exact
             path="/areas/"
             render={() => <AreaContainer areas={areas} changeView={changeView} />}
+          />}
+          {areas.length==0 && <Route
+            exact
+            path="/areas/"
+            render={() => <div className = "not-found">You do not have any favroites yet<img src={`${IMG_PATH}NothingToSee.jpg`} alt = {'No Listings Found'} /></div>}
           />}
           <Route
             exact
