@@ -136,12 +136,7 @@ describe('ApiCalls Tests', () => {
     })
 
     fireEvent.click(loginButton)
-
-    const rinoAreaButton = await waitFor(() => {
-      getByText('View 6 Listings in RiNo')
-    })
-
-    expect(rinoAreaButton).toBeInTheDocument();
+    const rinoAreaButton = await waitFor(() => getByText('View 6 Listings in RiNo'))
 
     fireEvent.click(rinoAreaButton)
 

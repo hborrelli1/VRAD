@@ -55,9 +55,10 @@ describe("LocationListingCard Test", () => {
   });
 
   it('should be able to add to Favorites', () => {
+    jest.clearAllMocks();
     const mockIsFavorite = jest.fn().mockImplementation(() => 'ADD-TO-FAVORITES');
     const mockFavorite = jest.fn();
-    const { getByText } = render(
+    const { getByText,debug } = render(
       <BrowserRouter>
         <LocationListingCard
           currentListing={currentListing}
@@ -68,9 +69,8 @@ describe("LocationListingCard Test", () => {
       </BrowserRouter>
     );
     const addToFavButton = getByText('ADD-TO-FAVORITES');
-
     fireEvent.click(addToFavButton);
-    expect(mockIsFavorite).toHaveBeenCalledTimes(1);
+    expect(mockIsFavorite).toHaveBeenCalledTimes(2);
     expect(mockIsFavorite).toHaveBeenCalledWith(3);
   });
 
