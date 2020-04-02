@@ -1,5 +1,5 @@
 .user-profile {
-  border:1px solid #b3b3b3;
+  @include card();
   border-radius:4px;
   max-width:23%;
   width:100%;
@@ -7,10 +7,9 @@
   overflow:hidden;
   margin-right:2%;
   margin-bottom:75px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 
   .welcome-header {
-    background-color:#e2e2e2;
+    background-color:$lightest-gray;
     padding:30px 20px;
 
     h3 {
@@ -26,7 +25,7 @@
       margin-top:20px;
       font-size:14px;
       font-style:italic;
-      color:#979797;
+      color:$light-gray;
     }
   }
 
@@ -42,7 +41,7 @@
       font-size:14px;
       margin-top:5px;
       border-radius:4px;
-      background-color:#979797;
+      background-color:$light-gray;
       display: inline-block;
       margin-bottom:50px;
       color:#fff;
@@ -53,7 +52,6 @@
       button {
         display: block;
         padding:10px 20px;
-        // background-color:#979797;
         color:#fff;
         text-transform:uppercase;
 

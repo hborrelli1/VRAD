@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { IMG_PATH } from "../../constants/Constants";
-import './LocationListingCard.scss';
 
 const LocationListingCard = ({ currentListing, favorite, isFavorite }) => {
   const {

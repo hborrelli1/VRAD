@@ -53,6 +53,7 @@
   font-size: $font-size-medium;
 }
 
-@mixin colorPurple() {
-  color:$primary-purple;
+@mixin card() {
+  border: $card-border;
+  box-shadow:$box-shadow;
 }

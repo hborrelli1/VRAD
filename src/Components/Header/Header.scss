@@ -1,6 +1,6 @@
 header {
   padding-bottom:10px;
-  border-bottom:1px solid #979797;
+  border-bottom:$card-border;
   width:100%;
   display: flex;
   justify-content: space-between;
@@ -14,7 +14,7 @@ header {
   }
 
   a {
-    background-color: #979797;
+    background-color: $light-gray;
     padding: 10px 30px;
     color: #fff;
     text-decoration: none;
