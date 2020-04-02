@@ -1,13 +1,13 @@
 .area-card {
   width:49%;
   margin-right:2%;
-  border:1px solid #b3b3b3;
+  border:$card-border;
   text-align:left;
   display:flex;
   flex-flow:column;
   justify-content: space-between;
   margin-bottom:30px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: $box-shadow;
   border-radius: 4px;
   overflow:hidden;
 

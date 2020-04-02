@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import AreaCard from '../AreaCard/AreaCard';
-import './AreaContainer.scss';
+// import './AreaContainer.scss';
 
 const AreaContainer = ({ areas, changeView }) => {
 
