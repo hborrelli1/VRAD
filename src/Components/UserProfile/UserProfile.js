@@ -31,6 +31,7 @@ const UserProfile = ({ userInfo, goToFavRentals,pathName}) => {
           to= {favoritePathHelper()}
           >
           <button
+            className = {"favorite-active"}
             onClick={goToFavRentals}
             >Favorited Rentals <span>{favoriteLocations.length}</span></button>
         </Link>

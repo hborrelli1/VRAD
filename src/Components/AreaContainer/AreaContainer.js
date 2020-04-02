@@ -13,6 +13,7 @@ const AreaContainer = ({ areas, changeView }) => {
   ));
 
   return (
+
     <div className="area-container">
       {areaCards}
     </div>
