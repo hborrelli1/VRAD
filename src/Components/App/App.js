@@ -18,7 +18,7 @@ class App extends Component {
         name: "",
         email: "",
         purpose: "",
-        favoriteLocations: ['/api/v1/listings/3', '/api/v1/listings/44']
+        favoriteLocations: []
       },
       areas: [],
       listings:[],
